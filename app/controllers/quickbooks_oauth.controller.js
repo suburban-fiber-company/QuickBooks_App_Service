@@ -63,13 +63,11 @@ module.exports = {
 
         await axios
             .post(
-                `${config.quickbooks_baseurl}/oauth2/v1/tokens/bearer`,
+                `${config.accesstoken_url}/oauth2/v1/tokens/bearer`,
                 data,
                 {
                     headers: {
                         Authorization: 'Basic ' + authHeader,
-                        'User-Agent': 'APIExplorer',
-                        Accept: 'application/json',
                         'Content-Type': 'application/x-www-form-urlencoded',
                     },
                 }
@@ -101,13 +99,11 @@ module.exports = {
 
         await axios
             .post(
-                `${config.quickbooks_baseurl}/oauth2/v1/tokens/bearer`,
+                `${config.accesstoken_url}/oauth2/v1/tokens/bearer`,
                 data,
                 {
                     headers: {
                         Authorization: 'Basic ' + authHeader,
-                        'User-Agent': 'APIExplorer',
-                        Accept: 'application/json',
                         'Content-Type': 'application/x-www-form-urlencoded',
                     },
                 }
