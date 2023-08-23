@@ -38,3 +38,167 @@
 2023-03-11T23:22:13.088Z info: The Authorize Uri is :https://appcenter.intuit.com/connect/oauth2?client_id=ABHtjNFqYbl8vQB1av0Xm8douOGOhiM2EgllrBYs6spd08kyeU&redirect_uri=http%3A%2F%2Flocalhost%3A4000%2Fv1%2Fquickbooks%2Fcallback&response_type=code&scope=com.intuit.quickbooks.accounting%20openid&state=testState
 2023-03-11T23:22:14.055Z info: The Authorize Uri is :https://appcenter.intuit.com/connect/oauth2?client_id=ABHtjNFqYbl8vQB1av0Xm8douOGOhiM2EgllrBYs6spd08kyeU&redirect_uri=http%3A%2F%2Flocalhost%3A4000%2Fv1%2Fquickbooks%2Fcallback&response_type=code&scope=com.intuit.quickbooks.accounting%20openid&state=testState
 2023-03-11T23:22:14.875Z info: The Authorize Uri is :https://appcenter.intuit.com/connect/oauth2?client_id=ABHtjNFqYbl8vQB1av0Xm8douOGOhiM2EgllrBYs6spd08kyeU&redirect_uri=http%3A%2F%2Flocalhost%3A4000%2Fv1%2Fquickbooks%2Fcallback&response_type=code&scope=com.intuit.quickbooks.accounting%20openid&state=testState
+2023-03-13T15:08:30.623Z info: The Authorize Uri is :https://appcenter.intuit.com/connect/oauth2?client_id=ABHtjNFqYbl8vQB1av0Xm8douOGOhiM2EgllrBYs6spd08kyeU&redirect_uri=http%3A%2F%2Flocalhost%3A4000%2Fv1%2Fquickbooks%2Fcallback&response_type=code&scope=com.intuit.quickbooks.accounting%20openid&state=testState
+2023-07-18T13:20:12.033Z info: The Authorize Uri is :https://appcenter.intuit.com/connect/oauth2?client_id=ABHtjNFqYbl8vQB1av0Xm8douOGOhiM2EgllrBYs6spd08kyeU&redirect_uri=http%3A%2F%2Flocalhost%3A4000%2Fv1%2Fquickbooks%2Fcallback&response_type=code&scope=com.intuit.quickbooks.accounting%20openid&state=testState
+2023-07-18T13:20:14.655Z info: The Authorize Uri is :https://appcenter.intuit.com/connect/oauth2?client_id=ABHtjNFqYbl8vQB1av0Xm8douOGOhiM2EgllrBYs6spd08kyeU&redirect_uri=http%3A%2F%2Flocalhost%3A4000%2Fv1%2Fquickbooks%2Fcallback&response_type=code&scope=com.intuit.quickbooks.accounting%20openid&state=testState
+2023-07-18T13:39:37.001Z info: The Authorize Uri is :https://appcenter.intuit.com/connect/oauth2?client_id=ABHtjNFqYbl8vQB1av0Xm8douOGOhiM2EgllrBYs6spd08kyeU&redirect_uri=http%3A%2F%2Flocalhost%3A4000%2Fv1%2Fquickbooks%2Fcallback&response_type=code&scope=com.intuit.quickbooks.accounting%20openid&state=testState
+2023-07-18T14:20:50.099Z error: Create Token () threw an exception : {
+  "authResponse": {
+    "token": {
+      "realmId": "4620816365284954830",
+      "token_type": "",
+      "access_token": "",
+      "refresh_token": "",
+      "expires_in": 0,
+      "x_refresh_token_expires_in": 0,
+      "id_token": "",
+      "latency": 60000,
+      "createdAt": 1689690047603,
+      "state": "testState"
+    },
+    "response": {
+      "url": "https://oauth.platform.intuit.com/oauth2/v1/tokens/bearer",
+      "headers": {
+        "date": "Tue, 18 Jul 2023 14:20:50 GMT",
+        "content-type": "application/json;charset=utf-8",
+        "content-length": "61",
+        "connection": "close",
+        "x-spanid": "a776a993-2f70-fc92-0fd9-c705626f9aaf",
+        "x-amzn-trace-id": "Root=1-64b69fc2-7e7ad0d804c8092e33ee9052",
+        "x-content-type-options": "nosniff",
+        "server": "istio-envoy",
+        "cache-control": "no-cache, no-store",
+        "pragma": "no-cache",
+        "x-envoy-upstream-service-time": "6",
+        "strict-transport-security": "max-age=31536000",
+        "intuit_tid": "1-64b69fc2-7e7ad0d804c8092e33ee9052",
+        "x-request-id": "1-64b69fc2-7e7ad0d804c8092e33ee9052",
+        "x-envoy-decorator-operation": "usw2-prd-id06-intuit-gateway-active-service.services-gateway-apigwid-usw2-prd-id06.svc.cluster.local:7000/*"
+      },
+      "body": "{\"error_description\":\"Token invalid\",\"error\":\"invalid_grant\"}",
+      "status": 400,
+      "statusText": "Bad Request"
+    },
+    "body": "{\"error_description\":\"Token invalid\",\"error\":\"invalid_grant\"}",
+    "json": {
+      "error_description": "Token invalid",
+      "error": "invalid_grant"
+    },
+    "intuit_tid": "1-64b69fc2-7e7ad0d804c8092e33ee9052"
+  },
+  "originalMessage": "Response has an Error",
+  "error": "invalid_grant",
+  "error_description": "Token invalid",
+  "intuit_tid": "1-64b69fc2-7e7ad0d804c8092e33ee9052"
+}
+2023-07-18T14:25:32.056Z error: Create Token () threw an exception : {
+  "authResponse": {
+    "token": {
+      "realmId": "4620816365284954830",
+      "token_type": "",
+      "access_token": "",
+      "refresh_token": "",
+      "expires_in": 0,
+      "x_refresh_token_expires_in": 0,
+      "id_token": "",
+      "latency": 60000,
+      "createdAt": 1689690329903,
+      "state": "testState"
+    },
+    "response": {
+      "url": "https://oauth.platform.intuit.com/oauth2/v1/tokens/bearer",
+      "headers": {
+        "date": "Tue, 18 Jul 2023 14:25:32 GMT",
+        "content-type": "application/json;charset=utf-8",
+        "content-length": "27",
+        "connection": "close",
+        "x-spanid": "183f4bc4-437a-58c1-a543-c351ceaf5ba5",
+        "x-amzn-trace-id": "Root=1-64b6a0dc-00d15efa46b4614a1894d44d",
+        "x-content-type-options": "nosniff",
+        "server": "istio-envoy",
+        "cache-control": "no-cache, no-store",
+        "pragma": "no-cache",
+        "x-envoy-upstream-service-time": "3",
+        "strict-transport-security": "max-age=31536000",
+        "intuit_tid": "1-64b6a0dc-00d15efa46b4614a1894d44d",
+        "x-request-id": "1-64b6a0dc-00d15efa46b4614a1894d44d",
+        "x-envoy-decorator-operation": "usw2-prd-id06-intuit-gateway-active-service.services-gateway-apigwid-usw2-prd-id06.svc.cluster.local:7000/*"
+      },
+      "body": "{\"error\":\"invalid_request\"}",
+      "status": 400,
+      "statusText": "Bad Request"
+    },
+    "body": "{\"error\":\"invalid_request\"}",
+    "json": {
+      "error": "invalid_request"
+    },
+    "intuit_tid": "1-64b6a0dc-00d15efa46b4614a1894d44d"
+  },
+  "originalMessage": "Response has an Error",
+  "error": "invalid_request",
+  "error_description": "Bad Request",
+  "intuit_tid": "1-64b6a0dc-00d15efa46b4614a1894d44d"
+}
+2023-07-18T14:25:59.645Z error: Create Token () threw an exception : {
+  "authResponse": {
+    "token": {
+      "realmId": "4620816365284954830",
+      "token_type": "",
+      "access_token": "",
+      "refresh_token": "",
+      "expires_in": 0,
+      "x_refresh_token_expires_in": 0,
+      "id_token": "",
+      "latency": 60000,
+      "createdAt": 1689690357490,
+      "state": "testState"
+    },
+    "response": {
+      "url": "https://oauth.platform.intuit.com/oauth2/v1/tokens/bearer",
+      "headers": {
+        "date": "Tue, 18 Jul 2023 14:25:59 GMT",
+        "content-type": "application/json;charset=utf-8",
+        "content-length": "27",
+        "connection": "close",
+        "x-spanid": "e8b178e6-9bcc-a296-25ae-479d8b69ce78",
+        "x-amzn-trace-id": "Root=1-64b6a0f7-244824ba7752599d3df30d3e",
+        "x-content-type-options": "nosniff",
+        "server": "istio-envoy",
+        "cache-control": "no-cache, no-store",
+        "pragma": "no-cache",
+        "x-envoy-upstream-service-time": "3",
+        "strict-transport-security": "max-age=31536000",
+        "intuit_tid": "1-64b6a0f7-244824ba7752599d3df30d3e",
+        "x-request-id": "1-64b6a0f7-244824ba7752599d3df30d3e",
+        "x-envoy-decorator-operation": "usw2-prd-id06-intuit-gateway-active-service.services-gateway-apigwid-usw2-prd-id06.svc.cluster.local:7000/*"
+      },
+      "body": "{\"error\":\"invalid_request\"}",
+      "status": 400,
+      "statusText": "Bad Request"
+    },
+    "body": "{\"error\":\"invalid_request\"}",
+    "json": {
+      "error": "invalid_request"
+    },
+    "intuit_tid": "1-64b6a0f7-244824ba7752599d3df30d3e"
+  },
+  "originalMessage": "Response has an Error",
+  "error": "invalid_request",
+  "error_description": "Bad Request",
+  "intuit_tid": "1-64b6a0f7-244824ba7752599d3df30d3e"
+}
+2023-07-18T15:29:47.518Z info: The Authorize Uri is :https://appcenter.intuit.com/connect/oauth2?client_id=ABHtjNFqYbl8vQB1av0Xm8douOGOhiM2EgllrBYs6spd08kyeU&redirect_uri=http%3A%2F%2Flocalhost%3A4000%2Fv1%2Fquickbooks%2Fcallback&response_type=code&scope=com.intuit.quickbooks.accounting%20openid&state=testState
+2023-07-18T15:42:22.475Z info: The Authorize Uri is :https://appcenter.intuit.com/connect/oauth2?client_id=ABHtjNFqYbl8vQB1av0Xm8douOGOhiM2EgllrBYs6spd08kyeU&redirect_uri=http%3A%2F%2Flocalhost%3A4000%2Fv1%2Fquickbooks%2Fcallback&response_type=code&scope=com.intuit.quickbooks.accounting%20openid&state=testState
+2023-07-18T15:44:13.334Z info: The Authorize Uri is :https://appcenter.intuit.com/connect/oauth2?client_id=ABHtjNFqYbl8vQB1av0Xm8douOGOhiM2EgllrBYs6spd08kyeU&redirect_uri=http%3A%2F%2Flocalhost%3A4000%2Fv1%2Fquickbooks%2Fcallback&response_type=code&scope=com.intuit.quickbooks.accounting%20openid&state=testState
+2023-07-19T13:12:56.057Z info: The Authorize Uri is :https://appcenter.intuit.com/connect/oauth2?client_id=ABHtjNFqYbl8vQB1av0Xm8douOGOhiM2EgllrBYs6spd08kyeU&redirect_uri=http%3A%2F%2Flocalhost%3A4000%2Fv1%2Fquickbooks%2Fcallback&response_type=code&scope=com.intuit.quickbooks.accounting%20openid&state=testState
+2023-07-20T15:31:58.067Z info: The Authorize Uri is :https://appcenter.intuit.com/connect/oauth2?client_id=ABHtjNFqYbl8vQB1av0Xm8douOGOhiM2EgllrBYs6spd08kyeU&redirect_uri=http%3A%2F%2Flocalhost%3A4000%2Fv1%2Fquickbooks%2Fcallback&response_type=code&scope=com.intuit.quickbooks.accounting%20openid&state=testState
+2023-07-25T17:52:28.326Z info: The Authorize Uri is :https://appcenter.intuit.com/connect/oauth2?client_id=ABHtjNFqYbl8vQB1av0Xm8douOGOhiM2EgllrBYs6spd08kyeU&redirect_uri=http%3A%2F%2Flocalhost%3A4000%2Fv1%2Fquickbooks%2Fcallback&response_type=code&scope=com.intuit.quickbooks.accounting%20openid&state=testState
+2023-08-22T16:05:36.438Z info: The Authorize Uri is :https://appcenter.intuit.com/connect/oauth2?client_id=ABHtjNFqYbl8vQB1av0Xm8douOGOhiM2EgllrBYs6spd08kyeU&redirect_uri=http%3A%2F%2Flocalhost%3A4000%2Fv1%2Fquickbooks%2Fcallback&response_type=code&scope=com.intuit.quickbooks.accounting%20openid&state=testState
+2023-08-22T16:07:29.957Z info: The Authorize Uri is :https://appcenter.intuit.com/connect/oauth2?client_id=ABHtjNFqYbl8vQB1av0Xm8douOGOhiM2EgllrBYs6spd08kyeU&redirect_uri=http%3A%2F%2Flocalhost%3A4000%2Fv1%2Fquickbooks%2Fcallback&response_type=code&scope=com.intuit.quickbooks.accounting%20openid&state=testState
+2023-08-22T16:51:49.830Z info: The Authorize Uri is :https://appcenter.intuit.com/connect/oauth2?client_id=ABHtjNFqYbl8vQB1av0Xm8douOGOhiM2EgllrBYs6spd08kyeU&redirect_uri=http%3A%2F%2Flocalhost%3A4000%2Fv1%2Fquickbooks%2Fcallback&response_type=code&scope=com.intuit.quickbooks.accounting%20openid&state=testState
+2023-08-22T17:03:19.428Z info: The Authorize Uri is :https://appcenter.intuit.com/connect/oauth2?client_id=ABHtjNFqYbl8vQB1av0Xm8douOGOhiM2EgllrBYs6spd08kyeU&redirect_uri=http%3A%2F%2Flocalhost%3A4000%2Fv1%2Fquickbooks%2Fcallback&response_type=code&scope=com.intuit.quickbooks.accounting%20openid&state=testState
+2023-08-22T17:04:15.305Z info: The Authorize Uri is :https://appcenter.intuit.com/connect/oauth2?client_id=ABHtjNFqYbl8vQB1av0Xm8douOGOhiM2EgllrBYs6spd08kyeU&redirect_uri=http%3A%2F%2Flocalhost%3A4000%2Fv1%2Fquickbooks%2Fcallback&response_type=code&scope=com.intuit.quickbooks.accounting%20openid&state=testState
+2023-08-22T17:05:02.807Z info: The Authorize Uri is :https://appcenter.intuit.com/connect/oauth2?client_id=ABHtjNFqYbl8vQB1av0Xm8douOGOhiM2EgllrBYs6spd08kyeU&redirect_uri=http%3A%2F%2Flocalhost%3A4000%2Fv1%2Fquickbooks%2Fcallback&response_type=code&scope=com.intuit.quickbooks.accounting%20openid&state=testState
+2023-08-22T17:05:20.649Z info: The Authorize Uri is :https://appcenter.intuit.com/connect/oauth2?client_id=ABHtjNFqYbl8vQB1av0Xm8douOGOhiM2EgllrBYs6spd08kyeU&redirect_uri=http%3A%2F%2Flocalhost%3A4000%2Fv1%2Fquickbooks%2Fcallback&response_type=code&scope=com.intuit.quickbooks.accounting%20openid&state=testState
+2023-08-22T17:06:12.587Z info: The Authorize Uri is :https://appcenter.intuit.com/connect/oauth2?client_id=ABHtjNFqYbl8vQB1av0Xm8douOGOhiM2EgllrBYs6spd08kyeU&redirect_uri=http%3A%2F%2Flocalhost%3A4000%2Fv1%2Fquickbooks%2Fcallback&response_type=code&scope=com.intuit.quickbooks.accounting%20openid&state=testState
+2023-08-22T17:08:40.569Z info: The Authorize Uri is :https://appcenter.intuit.com/connect/oauth2?redirect_uri=http%3A%2F%2Flocalhost%3A4000%2Fv1%2Fquickbooks%2Fcallback&response_type=code&scope=com.intuit.quickbooks.accounting%20openid&state=testState

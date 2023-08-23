@@ -1,9 +1,11 @@
 const OAuthClient = require('intuit-oauth')
 const config = require('../../settings/config')
 const axios = require('axios')
+const responses = require('../../functions')
 
-const apiKey = `${config.api_key}`
-const authHeader = typeof btoa === 'function' ? btoa(apiKey) : Buffer.from(apiKey).toString('base64')
+// const apiKey = `${config.api_key}`
+// const apiKey = typeof btoa === 'function' ? btoa(apiKey) : Buffer.from(apiKey).toString('base64')
+// const authHeader = typeof btoa === 'function' ? btoa(apiKey) : Buffer.from(apiKey).toString('base64')
 
 module.exports = {
     authorization: (req, res) => {
@@ -23,14 +25,14 @@ module.exports = {
             })
          
             res.json({
-                status: 200,
+                status: responses.getResponseCode(200)[0].code,
                 authorization_url: authUri, //Create the UI that redirects users to the authorization page
                 error: false
             })
     
         } catch (error) {
             res.json({
-                status: 500,
+                status: responses.getResponseCode(500)[0].code,
                 message: error,
                 error: true
             })
@@ -39,12 +41,12 @@ module.exports = {
     callback: (req, res) => {
         if(!req.query.code || !req.query.realmId || !req.query.state){
             res.json({
-                status: 422,
+                status: responses.getResponseCode(422)[0].code,
                 message: "Sorry we could not complete this request."
             })
         }else{
             res.json({
-                status: 200,
+                status: responses.getResponseCode(200)[0].code,
                 data: {
                     authorization_code: req.query.code,
                     realmId: req.query.realmId,
@@ -54,32 +56,34 @@ module.exports = {
         }
     },
     getAuthorizationToken: async (req, res) => {
-        
+
         let data = {
             code: req.query.code,
             redirect_uri: config.appUrl + '/v1/quickbooks/callback',
             grant_type: 'authorization_code'
         }
 
-        await axios
-            .post(
-                `${config.accesstoken_url}/oauth2/v1/tokens/bearer`,
-                data,
-                {
-                    headers: {
-                        Authorization: 'Basic ' + authHeader,
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                }
-            )
-            .then( (response) => {
-                // console.log(response.data)
-                res.json({status: response.status, data: response.data})
-            })
-            .catch( (error) => {
-                // console.log(error.response);
-                res.json({status: error.status, data: error.response.data})
-            });
+        let authHeader = responses.generateAuthHeader(req)
+
+        let conf = {
+            method: 'post',
+            maxBodyLength: Infinity,
+            url: `${config.accesstoken_url}/oauth2/v1/tokens/bearer`,
+            headers: { 
+              'Content-Type': 'application/x-www-form-urlencoded', 
+              'Authorization': `Basic ${authHeader}`
+            //   'Authorization': `Basic ${apiKey}`
+            },
+            data : data
+          };
+
+          await axios.request(conf)
+          .then((response) => {
+            res.json({status: response.status, data: response.data})
+          })
+          .catch((error) => {
+            res.json({status: error.response.status, data: error.response.data})
+          });
     },
     refreshToken: async (req, res) => {
 
@@ -90,10 +94,12 @@ module.exports = {
 
         if(!grant_type || !refresh_token){
             return res.json({
-                status: 422,
+                status: responses.getResponseCode(422)[0].code,
                 message: "We could not confirm your grant_type or refresh_token field"
             })
         }
+
+        let authHeader = responses.generateAuthHeader(req)
 
         let data = { grant_type, refresh_token }
 
@@ -103,7 +109,8 @@ module.exports = {
                 data,
                 {
                     headers: {
-                        Authorization: 'Basic ' + authHeader,
+                        Authorization: `Basic ${authHeader}`,
+                        // Authorization: `Basic ${apiKey}`,
                         'Content-Type': 'application/x-www-form-urlencoded',
                     },
                 }
