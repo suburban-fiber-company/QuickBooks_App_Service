@@ -17,6 +17,7 @@ module.exports = {
         };
           
         await axios.request(conf)
+        
         .then((result) => {
             res.json({status: result.status, data: result.data})
         }).catch((error) => {

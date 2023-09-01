@@ -17,7 +17,7 @@ module.exports = {
             throw new Error('You have not provide the clientId or clientSecret key in the query parameter');
         }
 
-        let apiKey = `${config.clientId}:${config.clientSecret}`
+        let apiKey = `${req.query.clientId}:${req.query.clientSecret}`
             let authHeader = typeof btoa === 'function' ? btoa(apiKey) : Buffer.from(apiKey).toString('base64')
 
             return authHeader

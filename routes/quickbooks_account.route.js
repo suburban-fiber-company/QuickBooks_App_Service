@@ -6,7 +6,7 @@ const accountController = require('../app/controllers/quickbooks_account.control
  *  /v1/quickbooks/account/get-accounts/{realmID}:
 *      get:
  *          summary: Get All Chart of Accounts
- *          tags: [Account]
+ *          tags: [ChartofAccount]
  *          parameters:
  *              -   in: header
  *                  name: authorization

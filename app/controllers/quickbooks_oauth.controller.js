@@ -3,10 +3,6 @@ const config = require('../../settings/config')
 const axios = require('axios')
 const responses = require('../../functions')
 
-// const apiKey = `${config.api_key}`
-// const apiKey = typeof btoa === 'function' ? btoa(apiKey) : Buffer.from(apiKey).toString('base64')
-// const authHeader = typeof btoa === 'function' ? btoa(apiKey) : Buffer.from(apiKey).toString('base64')
-
 module.exports = {
     authorization: (req, res) => {
         try {
@@ -116,9 +112,11 @@ module.exports = {
                 }
             )
             .then( (response) => {
+                console.log(response)
                 res.json({status: response.status, data: response.data})
             })
             .catch( (error) => {
+                console.log(error)
                 res.json({status: error.status, data: error.response.data})
             });
     }
