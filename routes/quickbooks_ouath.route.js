@@ -8,6 +8,17 @@ const quickBooksOAuthRoutes = require('../app/controllers/quickbooks_oauth.contr
 *      get:
  *          summary: Get Authorization Code
  *          tags: [Ouath2.0]
+*          parameters:
+ *              -   in: query
+ *                  name: clientId
+ *                  type: string
+ *                  required: true
+ *                  description: Client ID generated from QuickBooks
+ *              -   in: query
+ *                  name: clientSecret
+ *                  type: string
+ *                  required: true
+ *                  description: Client Secret generated from QuickBooks
  *          responses:
  *              200:
  *                  description: Success

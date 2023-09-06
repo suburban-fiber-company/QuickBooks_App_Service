@@ -7,8 +7,8 @@ module.exports = {
     authorization: (req, res) => {
         try {
             const oauthClient = new OAuthClient({
-                clientId: config.clientId,
-                clientSecret: config.clientSecret,
+                clientId: req.query.clientId,
+                clientSecret: req.query.clientSecret,
                 environment: config.environment,
                 redirectUri: config.appUrl + '/v1/quickbooks/callback',
                 logging: true
@@ -56,7 +56,8 @@ module.exports = {
         let data = {
             code: req.query.code,
             redirect_uri: config.appUrl + '/v1/quickbooks/callback',
-            grant_type: 'authorization_code'
+            grant_type: 'authorization_code',
+            clientId: req.query.clientId
         }
 
         let authHeader = responses.generateAuthHeader(req)
