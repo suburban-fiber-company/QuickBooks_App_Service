@@ -68,6 +68,7 @@ const customerRoute = require('./routes/quickbooks_customer.route')
 const invoiceRoute = require('./routes/quickbooks_invoice.route')
 const itemRoute = require('./routes/quickbooks_item.route')
 const accountRoute = require('./routes/quickbooks_account.route')
+const transactionListRoute = require('./routes/quickbooks_transaction_list.route')
 const { log } = require('winston')
 
 // axios.interceptors.request.use( request =>  {
@@ -91,6 +92,7 @@ app.use('/v1/quickbooks/customer', customerRoute)
 app.use('/v1/quickbooks/invoice', invoiceRoute)
 app.use('/v1/quickbooks/item', itemRoute)
 app.use('/v1/quickbooks/account', accountRoute)
+app.use('/v1/quickbooks/transaction-list', transactionListRoute)
 
 app.listen(PORT, () =>{
     console.log(`Quickbooks app service is  currently connected via ${config.appUrl}`);

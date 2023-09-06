@@ -113,7 +113,7 @@ module.exports = {
                 }
             )
             .then( (response) => {
-                console.log(response)
+                // console.log(response)
                 res.json({status: response.status, data: response.data})
             })
             .catch( (error) => {
