@@ -72,7 +72,42 @@ router.get('/transaction-list/:realmID', reportListController.getTransactionList
  *              500:
  *                  description: SystemFailureError from QuickBooks
  */
-router.get('/debt-ageing-list/:realmID', reportListController.getDebtAgeingList)
+router.get('/debt-ageing-list/:realmID', reportListController.getAccountReceivables)
 
 
+/**
+ * @swagger
+ *  /v1/quickbooks/report/aged-payable-list/{realmID}:
+*      get:
+ *          summary: Get Report on AgedPayables (Account Payables)
+ *          tags: [QuickBooks Report]
+ *          parameters:
+ *              -   in: header
+ *                  name: authorization
+ *                  type: string
+ *                  required: true
+ *                  description: Bearer token
+ *              -   in: path
+ *                  name: realmID
+ *                  type: string
+ *                  required: true
+ *              -   in: query
+ *                  name: start_date
+ *                  type: date
+ *                  example: 'y-m-d'
+ *                  required: true
+ *              -   in: query
+ *                  name: end_date
+ *                  type: date
+ *                  example: 'y-m-d'
+ *                  required: true
+ *          responses:
+ *              200:
+ *                  description: Success
+ *              401:
+ *                  description: Unauthorized
+ *              500:
+ *                  description: SystemFailureError from QuickBooks
+ */
+router.get('/aged-payable-list/:realmID', reportListController.getAccountPayables)
 module.exports = router

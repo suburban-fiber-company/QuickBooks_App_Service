@@ -96,7 +96,7 @@ module.exports = {
             res.json({status: error.response.status, data: error.response.data})
         })
     },
-    getDebtAgeingList: async (req, res) => {
+    getAccountReceivables: async (req, res) => {
 
         let start_date = req.query.start_date
         let end_date = req.query.end_date
@@ -165,8 +165,78 @@ module.exports = {
             }
 
         }).catch((error) => {
-            console.log(error)
-            // res.json({status: error.response.status, data: error.response.data})
+            res.json({status: error.response.status, data: error.response.data})
+        })
+    },
+    getAccountPayables: async (req, res) => {
+        let start_date = req.query.start_date
+        let end_date = req.query.end_date
+
+        let queryParams
+        
+        if(start_date && end_date ){
+            queryParams = '&start_date='+req.query.start_date+'&end_date='+req.query.end_date
+        }else{
+            queryParams = ''
+        }
+
+        let conf = {
+            method: 'get',
+            url: config.sandbox_baseurl+'/v3/company/'+req.params.realmID+'/reports/AgedPayableDetail?minorversion='+config.minorversion+queryParams,
+            headers: { 
+                Accept: 'application/json',
+                'Content-Type': 'application/json', 
+                Authorization: req.header('authorization')
+            }
+        };
+
+        await axios.request(conf)
+        .then((result) => {
+
+            let rowRecords = result.data
+            let data = rowRecords.Rows.Row
+
+            if(rowRecords){
+
+                let table = []
+
+                for (let index = 0; index < data.length; index++) {
+                    if (data.length > index + 1) {        
+                        var tableRows = []
+
+                        for (let row_index = 0; row_index < data[index]['Rows']['Row'].length; row_index++) {              
+                            tableRows.push({
+                                    "date": data[index]['Rows']['Row'][row_index].ColData[0].value,
+                                    "transactionType": data[index]['Rows']['Row'][row_index].ColData[1].value,
+                                    "num":data[index]['Rows']['Row'][row_index].ColData[2].value,
+                                    "customer":data[index]['Rows']['Row'][row_index].ColData[3].value,
+                                    "dueDate": data[index]['Rows']['Row'][row_index].ColData[0].value,
+                                    "amount": data[index]['Rows']['Row'][row_index].ColData[5].value,
+                                    "openingBalance": data[index]['Rows']['Row'][row_index].ColData[6].value,
+                                }
+                            )                                                       
+
+                        }
+                        
+                        var tableData = {
+                            "date" : data[index]['Header']['ColData'][0],
+                            "summary": {
+                                "Amount" : data[index]["Summary"].ColData[5].value,
+                                "OpenBalance": data[index]['Summary'].ColData[6].value
+                            },            
+                            "rows": tableRows
+                        }
+
+                        table.push(tableData)
+                    }
+                }
+                res.json({status: result.status, data: table})
+            }else{
+                res.json({status: 404, data: 'Nothing was returned'})
+            }
+
+        }).catch((error) => {
+            res.json({status: error.response.status, data: error.response.data})
         })
     }
 }
