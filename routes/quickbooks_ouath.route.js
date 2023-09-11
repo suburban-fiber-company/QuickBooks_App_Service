@@ -7,7 +7,7 @@ const quickBooksOAuthRoutes = require('../app/controllers/quickbooks_oauth.contr
  *  /v1/quickbooks/authorization:
 *      get:
  *          summary: Get Authorization Code
- *          tags: [Ouath2.0]
+ *          tags: [QuickBooks Ouath2.0]
 *          parameters:
  *              -   in: query
  *                  name: clientId
@@ -25,7 +25,7 @@ const quickBooksOAuthRoutes = require('../app/controllers/quickbooks_oauth.contr
  *              401:
  *                  description: Unauthorized
  *              500:
- *                  description: Internal Serval Error
+ *                  description: SystemFailureError from QuickBoos
  */
 router.get('/authorization', quickBooksOAuthRoutes.authorization)
 
@@ -34,7 +34,7 @@ router.get('/authorization', quickBooksOAuthRoutes.authorization)
  *  /v1/quickbooks/callback:
 *      get:
  *          summary: Redirect URL
- *          tags: [Ouath2.0]
+ *          tags: [QuickBooks Ouath2.0]
  *          responses:
  *              200:
  *                  description: Success
@@ -43,7 +43,7 @@ router.get('/authorization', quickBooksOAuthRoutes.authorization)
  *              422:
  *                  description: Missing Parameters
  *              500:
- *                  description: Internal Serval Error
+ *                  description: SystemFailureError from QuickBoos
  */
 router.get('/callback', quickBooksOAuthRoutes.callback)
 
@@ -52,7 +52,7 @@ router.get('/callback', quickBooksOAuthRoutes.callback)
  *  /v1/quickbooks/get-authorization-token:
 *      get:
  *          summary: Get Authorization Token Exchange
- *          tags: [Ouath2.0]
+ *          tags: [QuickBooks Ouath2.0]
  *          parameters:
  *              -   in: query
  *                  name: code
@@ -75,7 +75,7 @@ router.get('/callback', quickBooksOAuthRoutes.callback)
  *              401:
  *                  description: Unauthorized
  *              500:
- *                  description: Internal Serval Error
+ *                  description: SystemFailureError from QuickBoos
  */
 router.get('/get-authorization-token', quickBooksOAuthRoutes.getAuthorizationToken)
 
@@ -84,7 +84,7 @@ router.get('/get-authorization-token', quickBooksOAuthRoutes.getAuthorizationTok
  *  /v1/quickbooks/refresh-token:
 *      get:
  *          summary: Get Refresh Token
- *          tags: [Ouath2.0]
+ *          tags: [QuickBooks Ouath2.0]
  *          parameters:
  *              -   in: query
  *                  name: grant_type
@@ -103,7 +103,7 @@ router.get('/get-authorization-token', quickBooksOAuthRoutes.getAuthorizationTok
  *              401:
  *                  description: Unauthorized
  *              500:
- *                  description: Internal Serval Error
+ *                  description: SystemFailureError from QuickBooks
  */
 router.get('/refresh-token', quickBooksOAuthRoutes.refreshToken)
 

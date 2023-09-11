@@ -6,7 +6,7 @@ const itemController = require('../app/controllers/quickbooks_item.controller')
  *  /v1/quickbooks/item/get-items/{realmID}:
 *      get:
  *          summary: Get All Items
- *          tags: [Item]
+ *          tags: [QuickBooks Item]
  *          parameters:
  *              -   in: header
  *                  name: authorization
@@ -33,7 +33,7 @@ const itemController = require('../app/controllers/quickbooks_item.controller')
  *              401:
  *                  description: Unauthorized
  *              500:
- *                  description: Internal Serval Error
+ *                  description: SystemFailureError from QuickBooks
  */
 router.get('/get-items/:realmID', itemController.fetchAll)
 

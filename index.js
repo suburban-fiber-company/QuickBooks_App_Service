@@ -6,17 +6,6 @@ const axios = require('axios')
 const helmet = require("helmet")
 const swaggerJSDoc = require('swagger-jsdoc')
 const SwaggerUiOptions = require('swagger-ui-express')
-const responseCodes = require('./settings/response_statuses')
-
-
-// console.log(responseCodes);
-
-let result = responseCodes.filter(function(item){
-  return item.code == 200
-})
-
-console.log(result[0].message);
-
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -68,8 +57,7 @@ const customerRoute = require('./routes/quickbooks_customer.route')
 const invoiceRoute = require('./routes/quickbooks_invoice.route')
 const itemRoute = require('./routes/quickbooks_item.route')
 const accountRoute = require('./routes/quickbooks_account.route')
-const transactionListRoute = require('./routes/quickbooks_transaction_list.route')
-const { log } = require('winston')
+const reportRoute = require('./routes/quickbooks_report.route')
 
 // axios.interceptors.request.use( request =>  {
 //     request.headers['User-Agent'] = 'APIExplorer'
@@ -92,7 +80,7 @@ app.use('/v1/quickbooks/customer', customerRoute)
 app.use('/v1/quickbooks/invoice', invoiceRoute)
 app.use('/v1/quickbooks/item', itemRoute)
 app.use('/v1/quickbooks/account', accountRoute)
-app.use('/v1/quickbooks/transaction-list', transactionListRoute)
+app.use('/v1/quickbooks/report/', reportRoute)
 
 app.listen(PORT, () =>{
     console.log(`Quickbooks app service is  currently connected via ${config.appUrl}`);

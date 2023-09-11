@@ -6,7 +6,7 @@ const accountController = require('../app/controllers/quickbooks_account.control
  *  /v1/quickbooks/account/get-accounts/{realmID}:
 *      get:
  *          summary: Get All Chart of Accounts
- *          tags: [ChartofAccount]
+ *          tags: [Chart of Account]
  *          parameters:
  *              -   in: header
  *                  name: authorization
@@ -33,7 +33,7 @@ const accountController = require('../app/controllers/quickbooks_account.control
  *              401:
  *                  description: Unauthorized
  *              500:
- *                  description: Internal Serval Error
+ *                  description: SystemFailureError from QuickBooks
  */
 router.get('/get-accounts/:realmID', accountController.fetchAll)
 

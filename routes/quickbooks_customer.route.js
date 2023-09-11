@@ -23,7 +23,7 @@ const customerController = require('../app/controllers/quickbooks_customer.contr
  *              401:
  *                  description: Unauthorized
  *              500:
- *                  description: Internal Serval Error
+ *                  description: SystemFailureError from QuickBooks
  */
 router.post('/create/:realmID', customerController.createCustomer)
 
@@ -53,7 +53,7 @@ router.post('/create/:realmID', customerController.createCustomer)
  *              401:
  *                  description: Unauthorized
  *              500:
- *                  description: Internal Serval Error
+ *                  description: SystemFailureError from QuickBooks
  */
 router.get('/get-single-customer/:id/:realmID', customerController.getCustomerById)
 
@@ -89,7 +89,7 @@ router.get('/get-single-customer/:id/:realmID', customerController.getCustomerBy
  *              401:
  *                  description: Unauthorized
  *              500:
- *                  description: Internal Serval Error
+ *                  description: SystemFailureError from QuickBooks
  */
 router.get('/get-customers/:realmID', customerController.getAllCustomers)
 

@@ -62,5 +62,28 @@ module.exports = {
         }).catch((error) => {
             res.json({status: error.response.status, data: error.response.data})
         })
+    },
+    sendInvoice: async (req, res) => {
+        let invoiceId = req.query.invoiceId
+        let email = req.query.email
+        if(!invoiceId || !email) return res.json({status: apiResponse.getResponseCode(422)[0].code, data: 'Missing invoiceId or email'})
+
+        let conf = {
+            method: 'post',
+            url: config.sandbox_baseurl + '/v3/company/'+req.params.realmID+'/invoice/'+invoiceId+'/send?sendTo='+email+'?minorversion='+config.minorversion,
+            headers: { 
+              'Accept': 'application/json', 
+              'Content-Type': 'application/json', 
+              'Authorization': req.header('authorization')
+            },
+          };
+
+        await axios.request(conf)
+        .then((result) => {
+            console.log(result)
+            res.json({status: apiResponse.getResponseCode(200)[0].code, data: result.data})
+        }).catch((error) => {
+            res.json({status: error.response.status, data: error.response.data})
+        })
     }
 }
