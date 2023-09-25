@@ -1,52 +1,68 @@
 const axios = require('axios')
 const { requestInterceptor } = require('../../functions')
 const config = require('../../settings/config')
+const apiResponse = require('../../functions')
 
 
 module.exports = {
     createCustomer: async (req, res) => {
-        await axios.post(config.sandbox_baseurl + '/v3/company/'+req.params.realmID+'/customer?minorversion='+config.minorversion, 
-            req.body,
-            {
-                headers: {
-                    Authorization: req.header('authorization')
-                }
+      
+        let conf = {
+            method: 'post',
+            url: config.sandbox_baseurl + '/v3/company/'+req.params.realmID+'/customer?minorversion='+config.minorversion,
+            headers: { 
+              'Accept': 'application/json', 
+              'Content-Type': 'application/json', 
+              'Authorization': req.header('authorization')
             },
-        )
+            data : req.body
+          };
+
+        await axios.request(conf)
         .then((result) => {
-            res.json({status: result.status, data: result.data})
-        })
-        .catch((error) => {
+            res.json({status: apiResponse.getResponseCode(201)[0].code, data: result.data})
+        }).catch((error) => {
             res.json({status: error.response.status, data: error.response.data})
         })
     },
     getCustomerById: async (req, res) => {
-        await axios.get(config.sandbox_baseurl + '/v3/company/'+req.params.realmID+'/customer/'+ req.params.id  +'?minorversion='+config.minorversion, {
-            headers: {
-                Authorization: req.header('authorization') 
+
+        let conf = {
+            method: 'get',
+            url: config.sandbox_baseurl + '/v3/company/'+req.params.realmID+'/customer/'+ req.params.id  +'?minorversion='+config.minorversion,
+            headers: { 
+                Accept: 'application/json', 
+                Authorization: req.header('authorization')
             }
-        })
+        };
+          
+        await axios.request(conf)
         .then((result) => {
             res.json({status: result.status, data: result.data})
+        }).catch((error) => {
+            res.json({status: error.response.status, data: error.response.data})
         })
-        .catch((error) => {
-            if(error.response) return res.json({status: error.response.status, data: error.response.data})
-        }) 
     },
     getAllCustomers: async (req, res) => {
-        if(req.query.startposition == '' || req.query.maxresults == '') return res.json({status: 422, message: 'startposition and maxresults fields are required.'})
-        await axios.post(config.sandbox_baseurl + '/v3/company/'+req.params.realmID+'/query?minorversion='+config.minorversion,
-        `Select * from Customer startposition ${req.query.startposition} maxresults ${req.query.maxresults}`,
-        {
-            headers: {
-                Authorization: req.header('authorization') 
-            }
-        })
+
+        let data = 'select * from Customer startposition ' + req.query.startposition + ' maxresults ' + req.query.maxresult
+
+        let conf = {
+            method: 'post',
+            url: config.sandbox_baseurl + '/v3/company/'+req.params.realmID+'/query?minorversion='+config.minorversion,
+            headers: { 
+                Accept: 'application/json',
+                'Content-Type': 'application/text', 
+                Authorization: req.header('authorization')
+            },
+            data
+        };
+          
+        await axios.request(conf)
         .then((result) => {
             res.json({status: result.status, data: result.data})
-        })
-        .catch((error) => {
+        }).catch((error) => {
             res.json({status: error.response.status, data: error.response.data})
-        }) 
-    }
+        })
+    },
 }
