@@ -5,7 +5,7 @@ const appConfig = {
     api_key: 'ABHtjNFqYbl8vQB1av0Xm8douOGOhiM2EgllrBYs6spd08kyeU:FATXWeWeXlH7X5PPz9KKprxlM6iQO1o9nsHT9iyA',
     production_baseurl: 'https://oauth.platform.intuit.com',
     minorversion: 65,
-    revocation_endpoint:"https://developer.API.intuit.com/v2/oauth2/tokens/revoke",
+    revocation_endpoint:"https://oauth.platform.intuit.com/oauth2/v1/tokens/revoke",
     jwks_uri:"https://oauth.platform.intuit.com/op/v1/jwks",
 }
 

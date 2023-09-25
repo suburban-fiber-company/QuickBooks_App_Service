@@ -127,6 +127,6 @@ module.exports = {
 
         const disconnectUrl = `https://appcenter.intuit.com/Disconnect?oauth_token=${token}`;
 
-        res.json({status: 200, data: 'Disconnected successfully'})
+        res.json({status: 200, data: 'Disconnected successfully', message: disconnectUrl})
     }
 }
