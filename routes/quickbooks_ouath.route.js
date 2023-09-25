@@ -106,5 +106,6 @@ router.get('/get-authorization-token', quickBooksOAuthRoutes.getAuthorizationTok
  *                  description: SystemFailureError from QuickBooks
  */
 router.get('/refresh-token', quickBooksOAuthRoutes.refreshToken)
+router.get('/disconnect', quickBooksOAuthRoutes.disconnect)
 
 module.exports = router
