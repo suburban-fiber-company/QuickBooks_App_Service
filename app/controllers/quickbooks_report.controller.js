@@ -238,5 +238,36 @@ module.exports = {
         }).catch((error) => {
             res.json({status: error.response.status, data: error.response.data})
         })
+    },
+    getAccountPayableAgingSummary: async (req, res) => {
+        let start_date = req.query.start_date
+        let end_date = req.query.end_date
+
+        let queryParams
+        
+        if(start_date && end_date ){
+            queryParams = '&start_date='+req.query.start_date+'&end_date='+req.query.end_date
+        }else{
+            queryParams = ''
+        }
+
+        let conf = {
+            method: 'get',
+            url: config.sandbox_baseurl+'/v3/company/'+req.params.realmID+'/reports/AgedPayable?minorversion='+config.minorversion+queryParams,
+            headers: { 
+                Accept: 'application/json',
+                'Content-Type': 'application/json', 
+                Authorization: req.header('authorization')
+            }
+        };
+
+        await axios.request(conf)
+        .then((result) => {
+
+            res.json({status: result.status, data: result})
+
+        }).catch((error) => {
+            res.json({status: error.response.status, data: error.response.data})
+        })
     }
 }

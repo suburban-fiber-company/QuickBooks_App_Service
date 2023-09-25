@@ -110,4 +110,7 @@ router.get('/debt-ageing-list/:realmID', reportListController.getAccountReceivab
  *                  description: SystemFailureError from QuickBooks
  */
 router.get('/aged-payable-list/:realmID', reportListController.getAccountPayables)
+
+router.get('/account-payable-aging-summary/:realmID', reportListController.getAccountPayableAgingSummary)
+
 module.exports = router
