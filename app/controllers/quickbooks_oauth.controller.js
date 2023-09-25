@@ -120,5 +120,8 @@ module.exports = {
                 console.log(error)
                 res.json({status: error.status, data: error.response.data})
             });
+    },
+    revokeToken: async (req, res) => {
+        
     }
 }

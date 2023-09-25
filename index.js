@@ -37,7 +37,11 @@ const options = {
       servers: [
         {
             url: 'http://localhost:4000',
-            description: 'Development Server'
+            description: 'Local Server'
+        },
+        {
+            url: "https://vacctservice.suburbanfiberco.com",
+            description: "Production Server"  
         }
     ],
     },
