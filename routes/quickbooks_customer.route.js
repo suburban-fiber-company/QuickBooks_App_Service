@@ -4,7 +4,7 @@ const customerController = require('../app/controllers/quickbooks_customer.contr
 /**
  * @swagger
  *  /v1/quickbooks/customer/create/{realmID}:
-*      post:
+ *      post:
  *          summary: Create Customer
  *          tags: [Customer]
  *          parameters:
@@ -92,5 +92,32 @@ router.get('/get-single-customer/:id/:realmID', customerController.getCustomerBy
  *                  description: SystemFailureError from QuickBooks
  */
 router.get('/get-customers/:realmID', customerController.getAllCustomers)
+
+/**
+ * @swagger
+ *  /v1/quickbooks/customer/sparse-update/{realmID}:
+ *      post:
+ *          summary: Sparse Update Customer
+ *          tags: [Customer]
+ *          parameters:
+ *              -   in: header
+ *                  name: authorization
+ *                  type: string
+ *                  required: true
+ *                  description: Bearer token
+ *              -   in: path
+ *                  name: realmID
+ *                  type: string
+ *                  required: true
+ *          responses:
+ *              200:
+ *                  description: Success
+ *              401:
+ *                  description: Unauthorized
+ *              500:
+ *                  description: SystemFailureError from QuickBooks
+ */
+router.post('/sparse-update/:realmID', customerController.customerSparseUpdate)
+
 
 module.exports = router
