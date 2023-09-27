@@ -80,7 +80,7 @@ module.exports = {
         
         let conf = {
             method: 'post',
-            url: config.sandbox_baseurl + '/v3/company/'+req.params.realmID+'/customer?minorversion='+config.minorversion,
+            url: config.production_baseurl + '/v3/company/'+req.params.realmID+'/customer?minorversion='+config.minorversion,
             headers: { 
               'Accept': 'application/json', 
               'Content-Type': 'application/json', 
