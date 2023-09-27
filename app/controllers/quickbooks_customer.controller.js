@@ -65,4 +65,35 @@ module.exports = {
             res.json({status: error.response.status, data: error.response.data})
         })
     },
+    customerSparseUpdate: async (req, res) => {
+
+        let updateObj = {
+            'FullyQualifiedName' : req.body.business_name,
+            'DisplayName' : req.body.business_name,
+            'GivenName' : req.body.business_name,
+            'FamilyName' : req.body.business_name,
+            'CompanyName' : req.body.business_name,
+            "SyncToken": "0", 
+            "Id": req.body.quickbooks_id,
+            "sparse": true 
+        }
+        
+        let conf = {
+            method: 'post',
+            url: config.sandbox_baseurl + '/v3/company/'+req.params.realmID+'/customer?minorversion='+config.minorversion,
+            headers: { 
+              'Accept': 'application/json', 
+              'Content-Type': 'application/json', 
+              'Authorization': req.header('authorization')
+            },
+            data : updateObj
+          };
+
+        await axios.request(conf)
+        .then((result) => {
+            res.json({status: apiResponse.getResponseCode(201)[0].code, data: result.data})
+        }).catch((error) => {
+            res.json({status: error.response.status, data: error.response.data})
+        })
+    }
 }
