@@ -21,12 +21,32 @@ const reportListController = require('../app/controllers/quickbooks_report.contr
  *                  name: start_date
  *                  type: date
  *                  example: 'y-m-d'
- *                  required: true
+ *                  required: false
  *              -   in: query
  *                  name: end_date
  *                  type: date
  *                  example: 'y-m-d'
- *                  required: true
+ *                  required: false
+ *              -   in: query
+ *                  name: arpaid
+ *                  type: string
+ *                  example: 'e.g All, Paid, Unpaid'
+ *                  required: false
+ *              -   in: query
+ *                  name: date_macro
+ *                  type: string
+ *                  example: 'Supported Values from Get Supported Transaction Types endpoint'
+ *                  required: false
+ *              -   in: query
+ *                  name: transaction_type
+ *                  type: string
+ *                  example: 'Supported Values from Get Supported Transaction Types'
+ *                  required: false
+ *              -   in: query
+ *                  name: sort_order
+ *                  type: string
+ *                  example: 'ascend or descend'
+ *                  required: false
  *          responses:
  *              200:
  *                  description: Success
