@@ -31,7 +31,7 @@ const accountController = require('../app/controllers/quickbooks_account.control
  *              200:
  *                  description: Success
  *              401:
- *                  description: Unauthorized
+ *                  description: Unauthorized or Token expired
  *              500:
  *                  description: SystemFailureError from QuickBooks
  */

@@ -31,7 +31,7 @@ const reportListController = require('../app/controllers/quickbooks_report.contr
  *              200:
  *                  description: Success
  *              401:
- *                  description: Unauthorized
+ *                  description: Unauthorized or Token expired
  *              500:
  *                  description: SystemFailureError from QuickBooks
  */
@@ -68,7 +68,7 @@ router.get('/transaction-list/:realmID', reportListController.getTransactionList
  *              200:
  *                  description: Success
  *              401:
- *                  description: Unauthorized
+ *                  description: Unauthorized or Token expired
  *              500:
  *                  description: SystemFailureError from QuickBooks
  */
@@ -105,12 +105,78 @@ router.get('/debt-ageing-list/:realmID', reportListController.getAccountReceivab
  *              200:
  *                  description: Success
  *              401:
- *                  description: Unauthorized
+ *                  description: Unauthorized or Token expired
  *              500:
  *                  description: SystemFailureError from QuickBooks
  */
 router.get('/aged-payable-list/:realmID', reportListController.getAccountPayables)
 
+/**
+ * @swagger
+ *  /v1/quickbooks/report/account-payable-aging-summary/{realmID}:
+*      get:
+ *          summary: Get Report on AgedPayable Summary (Account Payable Summary)
+ *          tags: [QuickBooks Report]
+ *          parameters:
+ *              -   in: header
+ *                  name: authorization
+ *                  type: string
+ *                  required: true
+ *                  description: Bearer token
+ *              -   in: path
+ *                  name: realmID
+ *                  type: string
+ *                  required: true
+ *              -   in: query
+ *                  name: start_date
+ *                  type: date
+ *                  example: 'y-m-d'
+ *                  required: true
+ *              -   in: query
+ *                  name: end_date
+ *                  type: date
+ *                  example: 'y-m-d'
+ *                  required: true
+ *          responses:
+ *              200:
+ *                  description: Success
+ *              401:
+ *                  description: Unauthorized or Token expired
+ *              500:
+ *                  description: SystemFailureError from QuickBooks
+ */
 router.get('/account-payable-aging-summary/:realmID', reportListController.getAccountPayableAgingSummary)
+
+/**
+ * @swagger
+ *  /v1/quickbooks/report/predefined-date-range:
+*      get:
+ *          summary: Get PreDefined Macro Date
+ *          tags: [QuickBooks Report]
+ *          responses:
+ *              200:
+ *                  description: Success
+ *              401:
+ *                  description: Unauthorized or Token expired
+ *              500:
+ *                  description: SystemFailureError from QuickBooks
+ */
+router.get('/predefined-date-range', reportListController.reportMacroPreDefined)
+
+/**
+ * @swagger
+ *  /v1/quickbooks/report/transaction-types:
+*      get:
+ *          summary: Get Supported Transaction Types
+ *          tags: [QuickBooks Report]
+ *          responses:
+ *              200:
+ *                  description: Success
+ *              401:
+ *                  description: Unauthorized or Token expired
+ *              500:
+ *                  description: SystemFailureError from QuickBooks
+ */
+router.get('/transaction-types', reportListController.reportTransactionType)
 
 module.exports = router

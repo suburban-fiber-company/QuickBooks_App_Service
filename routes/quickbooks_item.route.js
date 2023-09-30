@@ -31,7 +31,7 @@ const itemController = require('../app/controllers/quickbooks_item.controller')
  *              200:
  *                  description: Success
  *              401:
- *                  description: Unauthorized
+ *                  description: Unauthorized or Token expired
  *              500:
  *                  description: SystemFailureError from QuickBooks
  */
