@@ -7,7 +7,32 @@ const apiResponse = require('../../functions')
 module.exports = {
     getAllInvoices: async (req, res) => {
 
-        let data = 'select * from invoice startposition ' + req.query.startposition + ' maxresults ' + req.query.maxresult
+        // let data = "SELECT * FROM Invoice WHERE MetaData.CreateTime >= '2009-10-14T04:05:05-07:00' AND MetaData.CreateTime <= '2023-10-14T04:05:05-07:00' startposition " + req.query.startposition + " maxresults " + req.query.maxresult
+        let data = `SELECT * FROM Invoice WHERE TxnDate >= '${req.query.start_date}'`
+            data += ` AND TxnDate <= '${req.query.end_date}'`
+            data += ` startposition ${req.query.startposition} maxresults ${req.query.maxresult}`
+
+        let conf = {
+            method: 'post',
+            url: config.sandbox_baseurl + '/v3/company/'+req.params.realmID+'/query?minorversion='+config.minorversion,
+            headers: { 
+                Accept: 'application/json',
+                'Content-Type': 'application/text', 
+                Authorization: req.header('authorization')
+            },
+            data
+        };
+          
+        await axios.request(conf)
+        .then((result) => {
+            res.json({status: result.status, data: result.data})
+        }).catch((error) => {
+            res.json({status: error.response.status, data: error.response.data})
+        })
+    },
+    getInvoicesCount: async (req, res) => {
+        let data = `SELECT count(*) FROM Invoice WHERE TxnDate >= '${req.query.start_date}'`
+            data += ` AND TxnDate <= '${req.query.end_date}'`
 
         let conf = {
             method: 'post',

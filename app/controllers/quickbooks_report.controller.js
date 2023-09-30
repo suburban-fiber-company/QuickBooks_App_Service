@@ -9,13 +9,39 @@ module.exports = {
 
         let start_date = req.query.start_date
         let end_date = req.query.end_date
+        let arpaid = req.query.arpaid
+        let appaid = req.query.status_balance
+        let date_macro = req.query.date_macro
+        let transaction_type = req.query.transaction_type
+        let sort_order = req.query.sort_order
 
-        let queryParams
+        let queryParams=''
+
+        // queryParams = '&columns=account_name,create_date,due_date,doc_num,inv_date,is_ap_paid,is_no_post,memo,name,other_account,pmt_mthd,tx_date,txn_type'
+        // create_date, due_date, doc_num, inv_date, is_ap_paid, is_cleared, is_no_post, last_mod_by, memo, name, other_account, pmt_mthd, tx_date, txn_type'
         
         if(start_date && end_date ){
-            queryParams = '&start_date='+req.query.start_date+'&end_date='+req.query.end_date
-        }else{
-            queryParams = ''
+            queryParams = '&start_date='+start_date+'&end_date='+end_date
+        }
+
+        if(arpaid){
+            queryParams += `&arpaid=${arpaid}`
+        }
+
+        if(appaid){
+            queryParams += `&appaid=${appaid}`
+        }
+
+        if(date_macro){
+            queryParams += `&date_macro=${date_macro}`
+        }
+
+        if(transaction_type){
+            queryParams += `&transaction_type=${transaction_type}`
+        }
+
+        if(sort_order){
+            queryParams += `&sort_order=${sort_order}`
         }
 
         const link = config.sandbox_baseurl+'/v3/company/'+req.params.realmID+'/reports/TransactionList?minorversion='+config.minorversion+queryParams
@@ -38,61 +64,42 @@ module.exports = {
             if(rowRecords.Row && rowRecords.Row.length){
                 let new_data=[]
 
-                rowRecords.Row.forEach(e=>{
+                const data = result.data.Rows.Row
 
-                    let object={}
+                for (let index = 0; index < data.length; index++) {
+                    let status
+                    if(arpaid == 'All' || arpaid == null){
+                        status = null
+                    }else if(arpaid == 'Paid' || arpaid == 'Unpaid'){
+                        status = arpaid
+                    }
 
-                    e.ColData.forEach((v,i)=>{
 
-                        if(i==0) object.transaction_date =v.value;
-                        
-                        if(i==1) {
-                            object.transaction = {
-                                transaction_type : v.value,
-                                transaction_id: v.id 
-                            }    
-                        }
-
-                        if(i==2) object.document_num = v.value
-
-                        if(i==3) object.is_no_post = v.value
-
-                        if(i==4){
-                            object.customer = {
-                                customer_name : v.value,
-                                customerId : v.id
-                            }
-                        }
-
-                        if(i==5) object.description = v.value
-
-                        if(i==6){
-                            object.account = {
-                                account_name : v.value,
-                                account_id : v.id
-                            }
-                        }
-
-                        if(i==7){
-
-                            object.split = {
-                                other_account : v.value,
-                                other_account_id : v.id
-                            }
-                        }
-
-                        if(i==8) object.amount = v.value
-
-                        new_data.push(object)
-                    })
-                })
+                  new_data.push(
+                    {
+                      "date" : data[index].ColData[0].value, 
+                      "transaction_type": data[index].ColData[1].value,
+                      "transaction_id": data[index].ColData[1].id,
+                      "document_number": data[index].ColData[2].value,
+                      "posting": data[index].ColData[3].value,
+                      "name": data[index].ColData[4].value,
+                      "memo": data[index].ColData[5].value,
+                      "account": data[index].ColData[6].value,
+                      "other account": data[index].ColData[7].value,
+                      "amount": data[index].ColData[8].value,
+                      "paid_status": status
+                    }
+                  )
+                }
 
                 res.json({status: result.status, headers: result.data.Header , data: new_data})
+                // res.json({status: result.status, headers: result.data.Header , data: data})
             }else{
                 res.json({status: 404, data: 'Nothing was returned'})
             }
 
         }).catch((error) => {
+            // console.log(error)
             res.json({status: error.response.status, data: error.response.data})
         })
     },
@@ -123,6 +130,7 @@ module.exports = {
         .then((result) => {
 
             let rowRecords = result.data
+
             let data = rowRecords.Rows.Row
 
             if(rowRecords){
@@ -269,5 +277,71 @@ module.exports = {
         }).catch((error) => {
             res.json({status: error.response.status, data: error.response.data})
         })
+    },
+    reportMacroPreDefined: async (req, res) => {
+        const supportedValues = [
+            'Today', 
+            'Yesterday', 
+            'This Week', 
+            'Last Week', 
+            'This Week-to-date', 
+            'Last Week-to-date', 
+            'Next Week', 
+            'Next 4 Weeks', 
+            'This Month', 
+            'Last Month', 
+            'This Month-to-date', 
+            'Last Month-to-date', 
+            'Next Month', 
+            'This Fiscal Quarter', 
+            'Last Fiscal Quarter', 
+            'This Fiscal Quarter-to-date', 
+            'Last Fiscal Quarter-to-date', 
+            'Next Fiscal Quarter', 
+            'This Fiscal Year', 
+            'Last Fiscal Year', 
+            'This Fiscal Year-to-date', 
+            'Last Fiscal Year-to-date', 
+            'Next Fiscal Year'
+        ]
+
+        res.json({status: 200, data: {supported_values: supportedValues}})
+    },
+    reportTransactionType: async (req, res) => {
+        const supportedValues = [
+            'CreditCardCharge', 
+            'Check', 
+            'Invoice', 
+            'ReceivePayment', 
+            'JournalEntry', 
+            'Bill', 
+            'CreditCardCredit', 
+            'VendorCredit', 
+            'Credit', 
+            'BillPaymentCheck', 
+            'BillPaymentCreditCard', 
+            'Charge', 
+            'Transfer', 
+            'Deposit', 
+            'Statement', 
+            'BillableCharge', 
+            'TimeActivity', 
+            'CashPurchase', 
+            'SalesReceipt', 
+            'CreditMemo', 
+            'CreditRefund', 
+            'Estimate', 
+            'InventoryQuantityAdjustment', 
+            'PurchaseOrder', 
+            'GlobalTaxPayment', 
+            'GlobalTaxAdjustment', 
+            'Service Tax Refund', 
+            'Service Tax Gross Adjustment', 
+            'Service Tax Reversal', 
+            'Service Tax Defer', 
+            'Service Tax Partial Utilisation'
+        ]
+
+        res.json({status: 200, data: {supported_values: supportedValues}})
     }
 }

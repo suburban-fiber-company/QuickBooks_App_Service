@@ -1,6 +1,43 @@
 const router = require('express').Router()
 const invoiceController = require('../app/controllers/quickbooks_invoice.controller')
 
+
+/**
+ * @swagger
+ *  /v1/quickbooks/invoice/count-invoices/{realmID}:
+*      get:
+ *          summary: Total Number of Invoices
+ *          tags: [QuickBooks Invoice]
+ *          parameters:
+ *              -   in: header
+ *                  name: authorization
+ *                  type: string
+ *                  required: true
+ *                  description: Bearer token
+*              -   in: path
+ *                  name: realmID
+ *                  type: string
+ *                  required: true
+ *              -   in: query
+ *                  name: start_date
+ *                  type: date
+ *                  required: true
+ *                  description: YYYY-MM-DD
+ *              -   in: query
+ *                  name: end_date
+ *                  type: date
+ *                  required: true
+ *                  description: YYYY-MM-DD
+ *          responses:
+ *              200:
+ *                  description: Success
+ *              401:
+ *                  description: Unauthorized or Token expired
+ *              500:
+ *                  description: SystemFailureError from QuickBooks
+ */
+router.get('/count-invoices/:realmID', invoiceController.getInvoicesCount)
+
 /**
  * @swagger
  *  /v1/quickbooks/invoice/get-invoices/{realmID}:
@@ -26,12 +63,22 @@ const invoiceController = require('../app/controllers/quickbooks_invoice.control
  *                  name: maxresult
  *                  type: integer
  *                  required: true
- *                  description: max result e.g 5
+ *                  description: max result e.g 1000
+ *              -   in: query
+ *                  name: start_date
+ *                  type: date
+ *                  required: true
+ *                  description: YYYY-MM-DD
+ *              -   in: query
+ *                  name: end_date
+ *                  type: date
+ *                  required: true
+ *                  description: YYYY-MM-DD
  *          responses:
  *              200:
  *                  description: Success
  *              401:
- *                  description: Unauthorized
+ *                  description: Unauthorized or Token expired
  *              500:
  *                  description: SystemFailureError from QuickBooks
  */
@@ -61,7 +108,7 @@ router.get('/get-invoices/:realmID', invoiceController.getAllInvoices)
  *              200:
  *                  description: Success
  *              401:
- *                  description: Unauthorized
+ *                  description: Unauthorized or Token expired
  *              500:
  *                  description: SystemFailureError from QuickBooks
  */
@@ -97,7 +144,7 @@ router.post('/create/:realmID', invoiceController.createInvoice)
  *              200:
  *                  description: Success
  *              401:
- *                  description: Unauthorized
+ *                  description: Unauthorized or Token expired
  *              500:
  *                  description: SystemFailureError from QuickBooks
  */

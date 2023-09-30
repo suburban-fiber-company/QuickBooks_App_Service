@@ -21,7 +21,7 @@ const customerController = require('../app/controllers/quickbooks_customer.contr
  *              200:
  *                  description: Success
  *              401:
- *                  description: Unauthorized
+ *                  description: Unauthorized or Token expired
  *              500:
  *                  description: SystemFailureError from QuickBooks
  */
@@ -51,7 +51,7 @@ router.post('/create/:realmID', customerController.createCustomer)
  *              200:
  *                  description: Success
  *              401:
- *                  description: Unauthorized
+ *                  description: Unauthorized or Token expired
  *              500:
  *                  description: SystemFailureError from QuickBooks
  */
@@ -87,7 +87,7 @@ router.get('/get-single-customer/:id/:realmID', customerController.getCustomerBy
  *              200:
  *                  description: Success
  *              401:
- *                  description: Unauthorized
+ *                  description: Unauthorized or Token expired
  *              500:
  *                  description: SystemFailureError from QuickBooks
  */
@@ -113,7 +113,7 @@ router.get('/get-customers/:realmID', customerController.getAllCustomers)
  *              200:
  *                  description: Success
  *              401:
- *                  description: Unauthorized
+ *                  description: Unauthorized or Token expired
  *              500:
  *                  description: SystemFailureError from QuickBooks
  */
