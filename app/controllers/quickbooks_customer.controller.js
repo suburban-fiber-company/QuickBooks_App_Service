@@ -2,6 +2,7 @@ const axios = require('axios')
 const { requestInterceptor } = require('../../functions')
 const config = require('../../settings/config')
 const apiResponse = require('../../functions')
+const crypto = require('crypto')
 
 
 module.exports = {
@@ -73,7 +74,7 @@ module.exports = {
             'GivenName' : req.body.business_name,
             'FamilyName' : req.body.business_name,
             'CompanyName' : req.body.business_name,
-            "SyncToken": "0", 
+            "SyncToken": req.body.quickbooks_id + 1, 
             "Id": req.body.quickbooks_id,
             "sparse": true 
         }
