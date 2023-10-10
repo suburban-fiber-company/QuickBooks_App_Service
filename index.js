@@ -50,11 +50,18 @@ const options = {
 
 const specs = swaggerJSDoc(options);
 
+app.get('/swagger.json', (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  res.send(specs);
+});
+
 app.use(
         "/api-docs",
         SwaggerUiOptions.serve,
         SwaggerUiOptions.setup(specs, { explorer: true })
 );
+
+
 
 const ouathRoute = require('./routes/quickbooks_ouath.route')
 const customerRoute = require('./routes/quickbooks_customer.route')
