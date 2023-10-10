@@ -97,6 +97,16 @@ router.get('/get-authorization-token', quickBooksOAuthRoutes.getAuthorizationTok
  *                  type: string
  *                  required: true
  *                  description: refresh token from Get Authorization Token Exchange endpoint
+ *              -   in: query
+ *                  name: clientId
+ *                  type: string
+ *                  required: true
+ *                  description: Client ID generated from QuickBooks
+ *              -   in: query
+ *                  name: clientSecret
+ *                  type: string
+ *                  required: true
+ *                  description: Client Secret generated from QuickBooks
  *          responses:
  *              200:
  *                  description: Success
