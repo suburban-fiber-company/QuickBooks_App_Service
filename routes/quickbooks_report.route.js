@@ -8,11 +8,6 @@ const reportListController = require('../app/controllers/quickbooks_report.contr
  *          summary: Get Report on Transaction List
  *          tags: [QuickBooks Report]
  *          parameters:
- *              -   in: header
- *                  name: authorization
- *                  type: string
- *                  required: true
- *                  description: Bearer token
  *              -   in: path
  *                  name: realmID
  *                  type: string
@@ -65,11 +60,6 @@ router.get('/transaction-list/:realmID', reportListController.getTransactionList
  *          summary: Get Report on Debt Ageing (AccountReceivables)
  *          tags: [QuickBooks Report]
  *          parameters:
- *              -   in: header
- *                  name: authorization
- *                  type: string
- *                  required: true
- *                  description: Bearer token
  *              -   in: path
  *                  name: realmID
  *                  type: string
@@ -102,11 +92,6 @@ router.get('/debt-ageing-list/:realmID', reportListController.getAccountReceivab
  *          summary: Get Report on AgedPayables (Account Payables)
  *          tags: [QuickBooks Report]
  *          parameters:
- *              -   in: header
- *                  name: authorization
- *                  type: string
- *                  required: true
- *                  description: Bearer token
  *              -   in: path
  *                  name: realmID
  *                  type: string
@@ -138,11 +123,6 @@ router.get('/aged-payable-list/:realmID', reportListController.getAccountPayable
  *          summary: Get Report on AgedPayable Summary (Account Payable Summary)
  *          tags: [QuickBooks Report]
  *          parameters:
- *              -   in: header
- *                  name: authorization
- *                  type: string
- *                  required: true
- *                  description: Bearer token
  *              -   in: path
  *                  name: realmID
  *                  type: string

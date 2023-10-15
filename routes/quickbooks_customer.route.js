@@ -8,11 +8,6 @@ const customerController = require('../app/controllers/quickbooks_customer.contr
  *          summary: Create Customer
  *          tags: [Customer]
  *          parameters:
- *              -   in: header
- *                  name: authorization
- *                  type: string
- *                  required: true
- *                  description: Bearer token
  *              -   in: path
  *                  name: realmID
  *                  type: string

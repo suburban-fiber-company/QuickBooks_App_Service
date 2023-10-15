@@ -8,11 +8,6 @@ const itemController = require('../app/controllers/quickbooks_item.controller')
  *          summary: Get All Items
  *          tags: [QuickBooks Item]
  *          parameters:
- *              -   in: header
- *                  name: authorization
- *                  type: string
- *                  required: true
- *                  description: Bearer token
 *              -   in: path
  *                  name: realmID
  *                  type: string

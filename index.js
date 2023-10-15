@@ -34,6 +34,21 @@ const options = {
         },
       },
       schemes: ['http', 'https'],
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          in: 'header',
+          name: 'Authorization',
+          description: 'Bearer token to access these api endpoints',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
+        },
+      },
+      security: [
+        {
+          bearerAuth: [],
+        },
+      ],
       servers: [
         {
             url: 'http://localhost:4000',
