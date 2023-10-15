@@ -31,24 +31,6 @@ router.get('/authorization', quickBooksOAuthRoutes.authorization)
 
 /**
  * @swagger
- *  /v1/quickbooks/callback:
-*      get:
- *          summary: Redirect URL
- *          tags: [QuickBooks Ouath2.0]
- *          responses:
- *              200:
- *                  description: Success
- *              401:
- *                  description: Unauthorized
- *              422:
- *                  description: Missing Parameters
- *              500:
- *                  description: SystemFailureError from QuickBoos
- */
-router.get('/callback', quickBooksOAuthRoutes.callback)
-
-/**
- * @swagger
  *  /v1/quickbooks/get-authorization-token:
 *      get:
  *          summary: Get Authorization Token Exchange
@@ -116,5 +98,25 @@ router.get('/get-authorization-token', quickBooksOAuthRoutes.getAuthorizationTok
  *                  description: SystemFailureError from QuickBooks
  */
 router.get('/refresh-token', quickBooksOAuthRoutes.refreshToken)
+
+/**
+ * @swagger
+ *  /v1/quickbooks/callback:
+*      get:
+ *          summary: Redirect URL
+ *          tags: [QuickBooks Ouath2.0]
+ *          responses:
+ *              200:
+ *                  description: Success
+ *              401:
+ *                  description: Unauthorized
+ *              422:
+ *                  description: Missing Parameters
+ *              500:
+ *                  description: SystemFailureError from QuickBoos
+ */
+router.get('/callback', quickBooksOAuthRoutes.callback)
+
+router.get('/disconnect', quickBooksOAuthRoutes.disconnect)
 
 module.exports = router
