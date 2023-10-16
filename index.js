@@ -6,10 +6,12 @@ const axios = require('axios')
 const helmet = require("helmet")
 const swaggerJSDoc = require('swagger-jsdoc')
 const SwaggerUiOptions = require('swagger-ui-express')
+const cors = require('cors')
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(helmet())
+app.use(cors())
 
 app.get('/', (req, res) => {
     res.send('Quickbooks API Application Service')
