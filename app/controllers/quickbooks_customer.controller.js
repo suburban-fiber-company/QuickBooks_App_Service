@@ -74,7 +74,7 @@ module.exports = {
             'GivenName' : req.body.business_name,
             'FamilyName' : req.body.business_name,
             'CompanyName' : req.body.business_name,
-            "SyncToken": req.body.quickbooks_id + 1, 
+            "SyncToken": req.body.SyncToken, 
             "Id": req.body.quickbooks_id,
             "sparse": true 
         }
