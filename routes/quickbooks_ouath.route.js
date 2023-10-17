@@ -19,6 +19,11 @@ const quickBooksOAuthRoutes = require('../app/controllers/quickbooks_oauth.contr
  *                  type: string
  *                  required: true
  *                  description: Client Secret generated from QuickBooks
+ *              -   in: query
+ *                  name: redirectUri
+ *                  type: string
+ *                  required: true
+ *                  description: Redirect URI
  *          responses:
  *              200:
  *                  description: Success
@@ -51,6 +56,11 @@ router.get('/authorization', quickBooksOAuthRoutes.authorization)
  *                  type: string
  *                  required: true
  *                  description: Client Secret generated from QuickBooks
+ *              -   in: query
+ *                  name: redirectUri
+ *                  type: string
+ *                  required: true
+ *                  description: Redirect URI
  *          responses:
  *              200:
  *                  description: Success

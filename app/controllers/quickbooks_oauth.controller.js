@@ -10,7 +10,7 @@ module.exports = {
                 clientId: req.query.clientId,
                 clientSecret: req.query.clientSecret,
                 environment: config.environment,
-                redirectUri: config.appUrl + '/v1/quickbooks/callback',
+                redirectUri: req.query.redirectUri,
                 logging: true
             })
         
@@ -55,7 +55,7 @@ module.exports = {
 
         let data = {
             code: req.query.code,
-            redirect_uri: config.appUrl + '/v1/quickbooks/callback',
+            redirect_uri: req.query.redirectUri,
             grant_type: 'authorization_code',
             clientId: req.query.clientId
         }
