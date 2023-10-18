@@ -8,16 +8,16 @@ const crypto = require('crypto')
 module.exports = {
     createCustomer: async (req, res) => {
       
-        let conf = {
-            method: 'post',
-            url: config.sandbox_baseurl + '/v3/company/'+req.params.realmID+'/customer?minorversion='+config.minorversion,
-            headers: { 
-              'Accept': 'application/json', 
-              'Content-Type': 'application/json', 
-              'Authorization': req.header('authorization')
-            },
-            data : req.body
-          };
+    let conf = {
+        method: 'post',
+        url: config.sandbox_baseurl + '/v3/company/'+req.params.realmID+'/customer?minorversion='+config.minorversion,
+        headers: { 
+            'Accept': 'application/json', 
+            'Content-Type': 'application/json', 
+            'Authorization': req.header('authorization')
+        },
+        data : req.body
+        };
 
         await axios.request(conf)
         .then((result) => {
