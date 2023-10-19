@@ -52,10 +52,10 @@ const options = {
         },
       ],
       servers: [
-        {
-            url: 'http://localhost:4000',
-            description: 'Local Server'
-        },
+        // {
+        //     url: 'http://localhost:4000',
+        //     description: 'Local Server'
+        // },
         {
             url: "https://vacctservice.suburbanfiberco.com",
             description: "Production Server"  
