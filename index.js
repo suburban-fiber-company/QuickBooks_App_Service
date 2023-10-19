@@ -86,21 +86,7 @@ const invoiceRoute = require('./routes/quickbooks_invoice.route')
 const itemRoute = require('./routes/quickbooks_item.route')
 const accountRoute = require('./routes/quickbooks_account.route')
 const reportRoute = require('./routes/quickbooks_report.route')
-
-// axios.interceptors.request.use( request =>  {
-//     request.headers['User-Agent'] = 'APIExplorer'
-//     request.headers['Accept'] = 'application/json'
-
-//     if(request.url.includes('query')){
-//         request.headers['Content-Type'] = 'application/text'
-//     }else{
-//         request.headers['Content-Type'] = 'application/json'
-//     }    
-//     return request;
-//   }, function (error) {
-//     return Promise.reject(error);
-//   }
-// )
+const paymentRoute = require('./routes/quickbooks_payment.route')
 
 //API Routes
 app.use('/v1/quickbooks', ouathRoute)
@@ -109,6 +95,7 @@ app.use('/v1/quickbooks/invoice', invoiceRoute)
 app.use('/v1/quickbooks/item', itemRoute)
 app.use('/v1/quickbooks/account', accountRoute)
 app.use('/v1/quickbooks/report/', reportRoute)
+app.use('/v1/quickbooks/payment/', paymentRoute)
 
 app.listen(PORT, () =>{
     console.log(`Quickbooks app service is  currently connected via ${config.appUrl}`);
