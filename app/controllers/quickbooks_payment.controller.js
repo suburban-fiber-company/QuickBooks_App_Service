@@ -20,7 +20,7 @@ module.exports = {
         };
 
         await axios.request(conf).then((result) => {
-            res.json({status: result.status, data: result.data})
+            res.json({status: apiResponse.getResponseCode(201)[0].code, data: result.data})
         }).catch((error) => {
             res.json({status: error.response.status, data: error.response.data})
         })
