@@ -123,11 +123,6 @@ router.post('/create/:realmID', invoiceController.createInvoice)
  *          summary: Send An Invoice By Email
  *          tags: [QuickBooks Invoice]
  *          parameters:
- *              -   in: header
- *                  name: authorization
- *                  type: string
- *                  required: true
- *                  description: Bearer token
  *              -   in: query
  *                  name: invoiceId
  *                  type: integer

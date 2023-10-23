@@ -64,8 +64,8 @@ router.get('/get-payment/:realmID/:payment_id', paymentController.getSinglePayme
  *                      schema:
  *                          $ref: '#/components/schemas/PaymentRequest'
  *          responses:
- *              200:
- *                  description: Success
+ *              201:
+ *                  description: Created
  *              401:
  *                  description: Unauthorized or Token expired
  *              500:

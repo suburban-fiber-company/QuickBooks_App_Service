@@ -10,7 +10,7 @@ module.exports = {
         
         let conf = {
             method: 'post',
-            url: config.sandbox_baseurl + '/v3/company/'+req.params.realmID+'/payment?minorversion='+config.minorversion,
+            url: config.production_baseurl + '/v3/company/'+req.params.realmID+'/payment?minorversion='+config.minorversion,
             headers: { 
                 'Accept': 'application/json', 
                 'Content-Type': 'application/json', 
@@ -30,14 +30,13 @@ module.exports = {
     getSinglePayment: async (req, res) => {
 
         let conf = {
-            method: 'post',
-            url: config.sandbox_baseurl + '/v3/company/'+req.params.realmID+'/payment/'+ req.params.payment_id  +'?minorversion='+config.minorversion,
+            method: 'get',
+            url: config.production_baseurl + '/v3/company/'+req.params.realmID+'/payment/'+ req.params.payment_id  +'?minorversion='+config.minorversion,
             headers: { 
                 'Accept': 'application/json', 
                 'Content-Type': 'application/json', 
                 'Authorization': req.header('authorization')
-            },
-            data : req.body
+            }
         };
 
         await axios.request(conf).then((result) => {

@@ -17,7 +17,7 @@ module.exports = {
             // AuthorizationUri
             const authUri = oauthClient.authorizeUri({
                 scope: [OAuthClient.scopes.Accounting, OAuthClient.scopes.OpenId],
-                state: 'testState', //testState or security_token
+                state: 'security_token', //testState or security_token
             })
          
             res.json({
@@ -121,7 +121,12 @@ module.exports = {
                 res.json({status: error.status, data: error.response.data})
             });
     },
-    revokeToken: async (req, res) => {
-        
+    disconnect: async (req, res) => {
+
+        let token = req.header('authorization')
+
+        const disconnectUrl = `https://appcenter.intuit.com/Disconnect?oauth_token=${token}`;
+
+        res.json({status: 200, data: 'Disconnected successfully', message: disconnectUrl})
     }
 }

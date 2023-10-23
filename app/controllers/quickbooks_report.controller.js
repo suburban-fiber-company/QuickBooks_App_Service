@@ -44,7 +44,7 @@ module.exports = {
             queryParams += `&sort_order=${sort_order}`
         }
 
-        const link = config.sandbox_baseurl+'/v3/company/'+req.params.realmID+'/reports/TransactionList?minorversion='+config.minorversion+queryParams
+        const link = config.production_baseurl+'/v3/company/'+req.params.realmID+'/reports/TransactionList?minorversion='+config.minorversion+queryParams
 
         let conf = {
             method: 'get',
@@ -118,7 +118,7 @@ module.exports = {
 
         let conf = {
             method: 'get',
-            url: config.sandbox_baseurl+'/v3/company/'+req.params.realmID+'/reports/AgedReceivableDetail?minorversion='+config.minorversion+queryParams,
+            url: config.production_baseurl+'/v3/company/'+req.params.realmID+'/reports/AgedReceivableDetail?minorversion='+config.minorversion+queryParams,
             headers: { 
                 Accept: 'application/json',
                 'Content-Type': 'application/json', 
@@ -190,7 +190,7 @@ module.exports = {
 
         let conf = {
             method: 'get',
-            url: config.sandbox_baseurl+'/v3/company/'+req.params.realmID+'/reports/AgedPayableDetail?minorversion='+config.minorversion+queryParams,
+            url: config.production_baseurl+'/v3/company/'+req.params.realmID+'/reports/AgedPayableDetail?minorversion='+config.minorversion+queryParams,
             headers: { 
                 Accept: 'application/json',
                 'Content-Type': 'application/json', 
@@ -261,7 +261,7 @@ module.exports = {
 
         let conf = {
             method: 'get',
-            url: config.sandbox_baseurl+'/v3/company/'+req.params.realmID+'/reports/AgedPayable?minorversion='+config.minorversion+queryParams,
+            url: config.production_baseurl+'/v3/company/'+req.params.realmID+'/reports/AgedPayable?minorversion='+config.minorversion+queryParams,
             headers: { 
                 Accept: 'application/json',
                 'Content-Type': 'application/json', 

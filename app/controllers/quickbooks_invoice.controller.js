@@ -14,7 +14,7 @@ module.exports = {
 
         let conf = {
             method: 'post',
-            url: config.sandbox_baseurl + '/v3/company/'+req.params.realmID+'/query?minorversion='+config.minorversion,
+            url: config.production_baseurl + '/v3/company/'+req.params.realmID+'/query?minorversion='+config.minorversion,
             headers: { 
                 Accept: 'application/json',
                 'Content-Type': 'application/text', 
@@ -36,7 +36,7 @@ module.exports = {
 
         let conf = {
             method: 'post',
-            url: config.sandbox_baseurl + '/v3/company/'+req.params.realmID+'/query?minorversion='+config.minorversion,
+            url: config.production_baseurl + '/v3/company/'+req.params.realmID+'/query?minorversion='+config.minorversion,
             headers: { 
                 Accept: 'application/json',
                 'Content-Type': 'application/text', 
@@ -55,7 +55,7 @@ module.exports = {
     createInvoice: async (req, res) => {
         let conf = {
             method: 'post',
-            url: config.sandbox_baseurl + '/v3/company/'+req.params.realmID+'/invoice?minorversion='+config.minorversion,
+            url: config.production_baseurl + '/v3/company/'+req.params.realmID+'/invoice?minorversion='+config.minorversion,
             headers: { 
               'Accept': 'application/json', 
               'Content-Type': 'application/json', 
@@ -74,7 +74,7 @@ module.exports = {
     getSingleInvoice: async (req, res) => {
         let conf = {
             method: 'get',
-            url: config.sandbox_baseurl + '/v3/company/'+req.params.realmID+'/invoice/'+ req.params.invoice_id  +'?minorversion='+config.minorversion,
+            url: config.production_baseurl + '/v3/company/'+req.params.realmID+'/invoice/'+ req.params.invoice_id  +'?minorversion='+config.minorversion,
             headers: { 
                 Accept: 'application/json', 
                 Authorization: req.header('authorization')
@@ -95,7 +95,7 @@ module.exports = {
 
         let conf = {
             method: 'post',
-            url: config.sandbox_baseurl + '/v3/company/'+req.params.realmID+'/invoice/'+invoiceId+'/send?sendTo='+email+'?minorversion='+config.minorversion,
+            url: config.production_baseurl + '/v3/company/'+req.params.realmID+'/invoice/'+invoiceId+'/send?sendTo='+email+'?minorversion='+config.minorversion,
             headers: { 
               'Accept': 'application/json', 
               'Content-Type': 'application/json', 

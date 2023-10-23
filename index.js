@@ -6,10 +6,12 @@ const axios = require('axios')
 const helmet = require("helmet")
 const swaggerJSDoc = require('swagger-jsdoc')
 const SwaggerUiOptions = require('swagger-ui-express')
+const cors = require('cors')
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(helmet())
+app.use(cors())
 
 app.get('/', (req, res) => {
     res.send('Quickbooks API Application Service')
@@ -34,11 +36,26 @@ const options = {
         },
       },
       schemes: ['http', 'https'],
-      servers: [
-        {
-            url: 'http://localhost:4000',
-            description: 'Local Server'
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          in: 'header',
+          name: 'Authorization',
+          description: 'Bearer token to access these api endpoints',
+          scheme: 'bearer',
+          bearerFormat: 'JWT',
         },
+      },
+      security: [
+        {
+          bearerAuth: [],
+        },
+      ],
+      servers: [
+        // {
+        //     url: 'http://localhost:4000',
+        //     description: 'Local Server'
+        // },
         {
             url: "https://vacctservice.suburbanfiberco.com",
             description: "Production Server"  
