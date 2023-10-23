@@ -110,5 +110,37 @@ module.exports = {
         }).catch((error) => {
             res.json({status: error.response.status, data: error.response.data})
         })
+    },
+    getCustomerInvoices: async (req, res) => {
+
+        let start_date = req.query.start_date
+        let end_date = req.query.end_date
+
+        let queryParams = `sort_order=descend`
+
+        if(start_date && end_date ){
+            queryParams += '&start_date='+start_date+'&end_date='+end_date
+        }
+
+        let data = `SELECT * FROM Invoice WHERE CustomerRef = '${req.query.quickbooks_customer_id}'`
+            data += ` startposition ${req.query.startposition} maxresults ${req.query.maxresult}`
+
+        let conf = {
+            method: 'post',
+            url: config.production_baseurl + '/v3/company/'+req.params.realmID+'/query?'+queryParams+'&minorversion='+config.minorversion,
+            headers: { 
+                Accept: 'application/json',
+                'Content-Type': 'application/text', 
+                Authorization: req.header('authorization')
+            },
+            data
+        };
+          
+        await axios.request(conf)
+        .then((result) => {
+            res.json({status: result.status, data: result.data})
+        }).catch((error) => {
+            res.json({status: error.response.status, data: error.response.data})
+        })
     }
 }
