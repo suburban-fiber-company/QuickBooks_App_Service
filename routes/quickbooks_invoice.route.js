@@ -150,4 +150,54 @@ router.post('/create/:realmID', invoiceController.createInvoice)
  */
 router.get('/send-an-invoice/:realmID', invoiceController.sendInvoice)
 
+/**
+ * @swagger
+ *  /v1/quickbooks/invoice/customer/invoices/{realmID}:
+*      get:
+ *          summary: Get the List of Customer Invoices
+ *          tags: [QuickBooks Invoice]
+ *          parameters:
+ *              -   in: header
+ *                  name: authorization
+ *                  type: string
+ *                  required: true
+ *                  description: Bearer token
+ *              -   in: query
+ *                  name: quickbooks_customer_id
+ *                  type: integer
+ *                  required: true
+ *              -   in: query
+ *                  name: startposition
+ *                  type: integer
+ *                  required: true
+ *                  description: start at 1
+ *              -   in: query
+ *                  name: maxresult
+ *                  type: integer
+ *                  required: true
+ *                  description: max results at 1000
+ *              -   in: path
+ *                  name: realmID
+ *                  type: string
+ *                  required: true
+ *              -   in: query
+ *                  name: start_date
+ *                  type: date
+ *                  required: false
+ *                  description: YYYY-MM-DD
+ *              -   in: query
+ *                  name: end_date
+ *                  type: date
+ *                  required: false
+ *                  description: YYYY-MM-DD
+ *          responses:
+ *              200:
+ *                  description: Success
+ *              401:
+ *                  description: Unauthorized or Token expired
+ *              500:
+ *                  description: SystemFailureError from QuickBooks
+ */
+router.get('/customer/invoices/:realmID', invoiceController.getCustomerInvoices)
+
 module.exports = router
