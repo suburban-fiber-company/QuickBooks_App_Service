@@ -1,5 +1,5 @@
 const appConfig = {
-    appUrl: 'https://vacctservicetest.suburbanfiberco.com',
+    appUrl: 'http://localhost:4000',
     environment: 'sandbox',
     accesstoken_url: 'https://oauth.platform.intuit.com',
     api_key: 'ABHtjNFqYbl8vQB1av0Xm8douOGOhiM2EgllrBYs6spd08kyeU:FATXWeWeXlH7X5PPz9KKprxlM6iQO1o9nsHT9iyA',
