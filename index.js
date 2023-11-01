@@ -7,6 +7,8 @@ const helmet = require("helmet")
 const swaggerJSDoc = require('swagger-jsdoc')
 const SwaggerUiOptions = require('swagger-ui-express')
 const EventEmitter = require('events')
+var cors = require('cors')
+
 
 
 // Create an instance of EventEmitter
