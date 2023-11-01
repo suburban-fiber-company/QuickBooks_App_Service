@@ -80,7 +80,7 @@ module.exports = {
         }
 
         if(req.body.new_email && req.body.new_email != ''){
-            updateObj.PrimaryEmailAddr = req.body.email
+            updateObj.PrimaryEmailAddr = req.body.new_email
         }
         
         let conf = {
