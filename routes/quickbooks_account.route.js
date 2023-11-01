@@ -8,11 +8,6 @@ const accountController = require('../app/controllers/quickbooks_account.control
  *          summary: Get All Chart of Accounts
  *          tags: [Chart of Account]
  *          parameters:
- *              -   in: header
- *                  name: authorization
- *                  type: string
- *                  required: true
- *                  description: Bearer token
 *              -   in: path
  *                  name: realmID
  *                  type: string
