@@ -76,12 +76,13 @@ module.exports = {
             'CompanyName' : req.body.business_name,
             "SyncToken": req.body.SyncToken, 
             "Id": req.body.quickbooks_id,
+            "PrimaryEmailAddr": req.body.new_email,
             "sparse": true 
         }
 
-        if(req.body.new_email && req.body.new_email != ''){
-            updateObj.PrimaryEmailAddr = req.body.new_email
-        }
+        // if(req.body.new_email && req.body.new_email != ''){
+        //     updateObj.PrimaryEmailAddr = req.body.new_email
+        // }
         
         let conf = {
             method: 'post',
