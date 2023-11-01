@@ -6,6 +6,14 @@ const axios = require('axios')
 const helmet = require("helmet")
 const swaggerJSDoc = require('swagger-jsdoc')
 const SwaggerUiOptions = require('swagger-ui-express')
+const EventEmitter = require('events')
+
+
+// Create an instance of EventEmitter
+const myEmitter = new EventEmitter();
+
+// Set the maximum number of listeners for this EventEmitter
+myEmitter.setMaxListeners(20); // Increase the limit to 20 listeners
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -38,6 +46,10 @@ const options = {
         {
             url: 'http://localhost:4000',
             description: 'Local Server'
+        },
+        {
+            url: 'https://vacctservicetest.suburbanfiberco.com',
+            description: 'Testing Server'
         },
         {
             url: "https://vacctservice.suburbanfiberco.com",

@@ -72,9 +72,11 @@ module.exports = {
         })
     },
     getSingleInvoice: async (req, res) => {
+        // v3/company/4620816365284954830/query?query=<selectStatement>&minorversion=65
+        let query = `select * from Invoice where id = '${req.params.invoice_id}'`
         let conf = {
             method: 'get',
-            url: config.sandbox_baseurl + '/v3/company/'+req.params.realmID+'/invoice/'+ req.params.invoice_id  +'?minorversion='+config.minorversion,
+            url: config.sandbox_baseurl + '/v3/company/'+req.params.realmID+'/query?query='+query+'&minorversion='+config.minorversion,
             headers: { 
                 Accept: 'application/json', 
                 Authorization: req.header('authorization')
@@ -105,7 +107,6 @@ module.exports = {
 
         await axios.request(conf)
         .then((result) => {
-            console.log(result)
             res.json({status: apiResponse.getResponseCode(200)[0].code, data: result.data})
         }).catch((error) => {
             res.json({status: error.response.status, data: error.response.data})

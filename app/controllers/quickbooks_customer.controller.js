@@ -78,6 +78,10 @@ module.exports = {
             "Id": req.body.quickbooks_id,
             "sparse": true 
         }
+
+        if(req.body.new_email && req.body.new_email != ''){
+            updateObj.PrimaryEmailAddr = req.body.email
+        }
         
         let conf = {
             method: 'post',
