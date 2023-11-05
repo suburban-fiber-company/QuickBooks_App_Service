@@ -166,7 +166,7 @@ module.exports = {
     updateInvoice: async (req, res) => {
         let conf = {
             method: 'post',
-            url: config.production_baseurl + '/v3/company/'+req.params.realmID+'/invoice/'+ req.params.invoice_id +'=delete&minorversion='+config.minorversion,
+            url: config.production_baseurl + '/v3/company/'+req.params.realmID+'/invoice/'+ req.params.invoice_id +'&minorversion='+config.minorversion,
             headers: { 
               'Accept': 'application/json', 
               'Content-Type': 'application/json', 
