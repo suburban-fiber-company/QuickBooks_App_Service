@@ -2,7 +2,6 @@ const router = require('express').Router()
 const paymentController = require('../app/controllers/quickbooks_payment.controller')
 const { route } = require('./quickbooks_ouath.route')
 
-
 /**
  *  @swagger
  *  components:
@@ -72,5 +71,4 @@ router.get('/get-payment/:realmID/:payment_id', paymentController.getSinglePayme
  *                  description: SystemFailureError from QuickBooks
  */
 router.post('/create/:realmID', paymentController.createPayment)
-
 module.exports = router
