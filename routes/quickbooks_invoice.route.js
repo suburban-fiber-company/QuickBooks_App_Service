@@ -24,11 +24,6 @@ const invoiceController = require('../app/controllers/quickbooks_invoice.control
  *          summary: Total Number of Invoices
  *          tags: [QuickBooks Invoice]
  *          parameters:
- *              -   in: header
- *                  name: authorization
- *                  type: string
- *                  required: true
- *                  description: Bearer token
 *              -   in: path
  *                  name: realmID
  *                  type: string
@@ -60,11 +55,6 @@ router.get('/count-invoices/:realmID', invoiceController.getInvoicesCount)
  *          summary: Get All Invoices
  *          tags: [QuickBooks Invoice]
  *          parameters:
- *              -   in: header
- *                  name: authorization
- *                  type: string
- *                  required: true
- *                  description: Bearer token
 *              -   in: path
  *                  name: realmID
  *                  type: string
@@ -106,11 +96,6 @@ router.get('/get-invoices/:realmID', invoiceController.getAllInvoices)
  *          summary: Get Single Invoice
  *          tags: [QuickBooks Invoice]
  *          parameters:
- *              -   in: header
- *                  name: authorization
- *                  type: string
- *                  required: true
- *                  description: Bearer token
  *              -   in: path
  *                  name: invoice_id
  *                  type: integer
@@ -167,11 +152,6 @@ router.get('/send-an-invoice/:realmID', invoiceController.sendInvoice)
  *          summary: Get the List of Customer Invoices
  *          tags: [QuickBooks Invoice]
  *          parameters:
- *              -   in: header
- *                  name: authorization
- *                  type: string
- *                  required: true
- *                  description: Bearer token
  *              -   in: query
  *                  name: quickbooks_customer_id
  *                  type: integer
@@ -235,5 +215,30 @@ router.get('/customer/invoices/:realmID', invoiceController.getCustomerInvoices)
  *                  description: SystemFailureError from QuickBooks
  */
 router.post('/delete-invoice/:realmID', invoiceController.deleteInvoice)
+
+/**
+ * @swagger
+ *  /v1/quickbooks/invoice/update-invoice/{invoice_id}/{realmID}:
+ *      post:
+ *          summary: Update Invoice
+ *          tags: [QuickBooks Invoice]
+ *          parameters:
+ *              -   in: path
+ *                  name: invoice_id
+ *                  type: integer
+ *                  required: true
+ *              -   in: path
+ *                  name: realmID
+ *                  type: string
+ *                  required: true
+ *          responses:
+ *              200:
+ *                  description: Success
+ *              401:
+ *                  description: Unauthorized or Token expired
+ *              500:
+ *                  description: SystemFailureError from QuickBooks
+ */
+router.put('/update-invoice/:invoice_id/:realmID', invoiceController.updateInvoice)
 
 module.exports = router

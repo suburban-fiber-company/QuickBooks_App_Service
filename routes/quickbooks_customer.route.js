@@ -29,11 +29,6 @@ router.post('/create/:realmID', customerController.createCustomer)
  *          summary: Get Single Customer
  *          tags: [Customer]
  *          parameters:
- *              -   in: header
- *                  name: authorization
- *                  type: string
- *                  required: true
- *                  description: Bearer token
  *              -   in: path
  *                  name: customer_id
  *                  type: integer
@@ -59,11 +54,6 @@ router.get('/get-single-customer/:id/:realmID', customerController.getCustomerBy
  *          summary: Get All Customers
  *          tags: [Customer]
  *          parameters:
- *              -   in: header
- *                  name: authorization
- *                  type: string
- *                  required: true
- *                  description: Bearer token
 *              -   in: path
  *                  name: realmID
  *                  type: string
@@ -95,11 +85,6 @@ router.get('/get-customers/:realmID', customerController.getAllCustomers)
  *          summary: Sparse Update Customer
  *          tags: [Customer]
  *          parameters:
- *              -   in: header
- *                  name: authorization
- *                  type: string
- *                  required: true
- *                  description: Bearer token
  *              -   in: path
  *                  name: realmID
  *                  type: string
