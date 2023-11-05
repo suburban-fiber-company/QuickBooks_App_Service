@@ -3,6 +3,21 @@ const invoiceController = require('../app/controllers/quickbooks_invoice.control
 
 
 /**
+ *  @swagger
+ *  components:
+ *      schemas:
+ *          DeleteInvoiceInput:
+ *              type: object
+ *              properties:
+ *                  SyncToken:
+ *                      type: string
+ *                      required: true
+ *                  Id:
+ *                      type: string
+ *                      required: true
+ */
+
+/**
  * @swagger
  *  /v1/quickbooks/invoice/count-invoices/{realmID}:
 *      get:
@@ -194,5 +209,31 @@ router.get('/send-an-invoice/:realmID', invoiceController.sendInvoice)
  *                  description: SystemFailureError from QuickBooks
  */
 router.get('/customer/invoices/:realmID', invoiceController.getCustomerInvoices)
+
+/**
+ * @swagger
+ *  /v1/quickbooks/invoice/delete-invoice/{realmID}:
+*      post:
+ *          summary: Delete an Invoice
+ *          tags: [QuickBooks Invoice]
+ *          parameters:
+ *                  name: realmID
+ *                  type: string
+ *                  required: true
+*          requestBody:
+*              required: true
+*              content:
+*                  application/json:
+*                      schema:
+*                          $ref: '#/components/schemas/DeleteInvoiceInput'
+ *          responses:
+ *              200:
+ *                  description: Success
+ *              401:
+ *                  description: Unauthorized or Token expired
+ *              500:
+ *                  description: SystemFailureError from QuickBooks
+ */
+router.post('/delete-invoice/:realmID', invoiceController.deleteInvoice)
 
 module.exports = router

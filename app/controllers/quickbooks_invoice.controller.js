@@ -143,5 +143,24 @@ module.exports = {
         }).catch((error) => {
             res.json({status: error.response.status, data: error.response.data})
         })
+    },
+    deleteInvoice: async (req, res) => {
+        let conf = {
+            method: 'post',
+            url: config.production_baseurl + '/v3/company/'+req.params.realmID+'/invoice?operation=delete&minorversion='+config.minorversion,
+            headers: { 
+              'Accept': 'application/json', 
+              'Content-Type': 'application/json', 
+              'Authorization': req.header('authorization')
+            },
+            data : req.body
+          };
+
+        await axios.request(conf)
+        .then((result) => {
+            res.json({status: apiResponse.getResponseCode(200)[0].code, data: result.data})
+        }).catch((error) => {
+            res.json({status: error.response.status, data: error.response.data})
+        })
     }
 }
