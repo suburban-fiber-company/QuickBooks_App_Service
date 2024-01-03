@@ -85,9 +85,9 @@ app.get('/swagger.json', (req, res) => {
 });
 
 app.use(
-        "/api-docs",
-        SwaggerUiOptions.serve,
-        SwaggerUiOptions.setup(specs, { explorer: true })
+    "/api-docs",
+    SwaggerUiOptions.serve,
+    SwaggerUiOptions.setup(specs, { explorer: true })
 );
 
 
@@ -99,6 +99,7 @@ const itemRoute = require('./routes/quickbooks_item.route')
 const accountRoute = require('./routes/quickbooks_account.route')
 const reportRoute = require('./routes/quickbooks_report.route')
 const paymentRoute = require('./routes/quickbooks_payment.route')
+const bulkOperationRoute = require('./routes/quickbooks_bulk.route')
 
 //API Routes
 app.use('/v1/quickbooks', ouathRoute)
@@ -106,8 +107,9 @@ app.use('/v1/quickbooks/customer', customerRoute)
 app.use('/v1/quickbooks/invoice', invoiceRoute)
 app.use('/v1/quickbooks/item', itemRoute)
 app.use('/v1/quickbooks/account', accountRoute)
-app.use('/v1/quickbooks/report/', reportRoute)
-app.use('/v1/quickbooks/payment/', paymentRoute)
+app.use('/v1/quickbooks/report', reportRoute)
+app.use('/v1/quickbooks/payment', paymentRoute)
+app.use('/v1/quickbooks/bulk-operation', bulkOperationRoute)
 
 app.listen(PORT, () =>{
     console.log(`Quickbooks app service is  currently connected via ${config.appUrl}`);
