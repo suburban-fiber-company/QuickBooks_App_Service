@@ -31,9 +31,9 @@ const options = {
     definition: {
       openapi: "3.0.0",
       info: {
-        title: "QuickBooks Service with Swagger",
+        title: "Virtual Accountant Service Service with Swagger",
         version: "1.0.0",
-        description: "This is a quickbooks application and documented with Swagger",
+        description: "This is a virtual accountant application and documented with Swagger",
         license: {
           name: "MIT",
           url: "https://spdx.org/licenses/MIT.html",
