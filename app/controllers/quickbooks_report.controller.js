@@ -99,7 +99,6 @@ module.exports = {
             }
 
         }).catch((error) => {
-            // console.log(error)
             res.json({status: error.response.status, data: error.response.data})
         })
     },
